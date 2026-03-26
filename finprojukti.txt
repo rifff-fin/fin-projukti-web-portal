@@ -1,0 +1,81 @@
+Prompt 1: The Global Shell & High-Impact Hero
+"Act as a Senior Frontend Architect. Create a React + Tailwind CSS + Framer Motion project.
+
+Theme: Set a strict dark theme with background #000000. Text should be #CCCCCC for body and pure white for headings. Use #FF6600 only for high-priority accents (primary buttons, active hover states).
+
+Hero Section (Reference: Zencode style):
+
+Navigation: A glassmorphism sticky navbar with the 'Fin Projukti' logo placeholder, links for 'Services', 'Work', 'DNA', and a 'Start Project' button in orange.
+
+Headline: Large, bold typography: 'The End of Manual Limits. The Beginning of AI Growth.'
+
+Subtext: 'A BRAC University student-led startup engineering the future of digital commerce through high-end automation and scalable web architecture.'
+
+CTAs: A solid orange button 'Automate My Business' and an outlined grey button 'See Our Tech Stack'.
+
+Stats Row: Include minimalist counters: '50+ Solutions Shipped', '30+ Businesses Scaled', '100% Secure Architecture'."
+
+Prompt 2: The Tech Marquee & Service Pillars
+"Build the 'Services' and 'Tech Stack' sections for the Fin Projukti website.
+
+The Tech Marquee: Create a continuous, infinite-scrolling marquee (Zencode style) displaying our tech arsenal: 'MERN Stack ✦ Python ✦ AI Stacks ✦ Java ✦ C# ✦ C++ ✦ React ✦ Node.js ✦ WhatsApp API ✦ PHP ✦ ASP.NET'.
+
+Services Grid: Create a numbered vertical list (01, 02, 03) of services:
+
+MERN Ecosystems: Architecting ultra-fast storefronts that move businesses from DMs to professional dashboards.
+
+AI & Automation: Custom AI agents and intelligent WhatsApp bots that handle sales 24/7.
+
+Industrial Engineering: Robust backend solutions for complex logic using Python, Java, and C++.
+
+Design: Use thin #CCCCCC borders and orange accent numbers. Add a 'Reveal on Scroll' animation for each service."
+
+Prompt 3: The 'Fin' Process & Portfolio
+"Design the 'Selected Work' and 'Process' sections.
+
+Selected Work: Create 2 large, high-end project cards. Each card should have a dark charcoal background, a project title (e.g., 'E-Commerce Evolution'), a category tag (e.g., 'MERN + AI'), and a brief description. Include tech tags at the bottom of each card.
+
+The Process (01-04): Create a 4-step vertical timeline showing how we work:
+
+Discovery & Strategy: Researching your manual limits.
+
+Architecture: Designing your digital foundation.
+
+Engineering: Building high-end, scalable code.
+
+Launch & Scale: Starting your automated journey.
+
+Vibe: Minimalist, using grey lines and orange dots to connect the steps."
+
+Prompt 4: The 'About Us' DNA Section
+"Create a section titled 'Our DNA: From BRACU to Big Tech.'
+
+Content: > * Left Side: A bold statement about being a startup founded by BRAC University students with big dreams of becoming a physical tech giant.
+
+Right Side: Three core values: 'Craft over Quantity', 'AI-First Thinking', and 'Radical Transparency'.
+
+Philosophy: Explain that 'Fin' isn't just a name; it’s a commitment to ending the era of manual struggle for Bangladeshi entrepreneurs.
+
+Styling: Use a high-contrast black and white layout with a subtle orange glow in the background to give it an 'AI' feel."
+
+Prompt 5: The 'Digital Empire' Contact & Footer
+"Build the final 'Get in Touch' section and Footer.
+
+Contact Form: Create a modern, minimalist form with fields for 'Name', 'Business Type', and 'Services Needed'. Use white-to-grey text inputs with orange focuses. Add a 'WhatsApp Consultation' button as the primary call to action.
+
+Footer: > * Column 1: Fin Projukti Logo and the mission: 'Engineering the beginning of your AI growth.'
+
+Column 2: Services list.
+
+Column 3: Social links (Facebook, LinkedIn, GitHub).
+
+Bottom Bar: '© 2026 Fin Projukti | A BRAC University Student-Led Startup | Next-Gen Web & AI Solutions.'
+
+Animation: Ensure a smooth 'Fade Up' animation for the entire footer."
+
+Key Customization for Fin Projukti:
+Logo Placement: Use your orange circle logo in the Navbar.
+
+The "Orange" Rule: Keep the background pure black. Only use the orange for things you want the user to click or read first.
+
+Tech Depth: By listing languages like Java, C++, and C# in the marquee, you immediately look more professional than a basic web agency.
