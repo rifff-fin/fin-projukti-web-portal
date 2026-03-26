@@ -86,7 +86,6 @@ export default function Navbar() {
           {/* Desktop Links */}
           <nav
             style={{
-              display: 'flex',
               alignItems: 'center',
               gap: '2.5rem',
             }}
