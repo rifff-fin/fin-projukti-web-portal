@@ -60,6 +60,7 @@ const projects: Project[] = [
     tags: ['NFC Tech', 'React', 'Node.js', 'Digital Portfolio', 'PWA'],
     year: '2025',
     metric: 'Instant Digital Presence',
+    link: 'https://msdiganto.netlify.app/',
   },
   {
     title: 'Smart POS System',
