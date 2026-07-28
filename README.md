@@ -26,7 +26,7 @@ Fin Projukti is a comprehensive web portal designed to empower Bangladeshi busin
 - **API Communication**: Axios
 - **Deployment**: Netlify
 
-**Live Site**: [finprojukti.netlify.app](https://finprojukti.netlify.app/)
+**Live Site**: [finprojukti.netlify.app](https://finprojukti.tech/)
 
 ## 📦 Installation & Setup
 
