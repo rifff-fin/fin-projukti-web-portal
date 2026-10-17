@@ -3,6 +3,7 @@ import { nav } from './content/copy';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MotionSwitch } from './components/MotionSwitch';
+import { SceneHost } from './components/SceneHost';
 import { useReveals } from './hooks/useReveals';
 import { ScrollTrigger } from './lib/gsap';
 import { SmoothScroll } from './lib/lenis';
@@ -38,6 +39,7 @@ export function App() {
         {nav.skipLink}
       </a>
       <Header />
+      <SceneHost />
       {/* The page sits above the single fixed WebGL canvas (z 0); transparent sections show it. */}
       <div ref={page} className="relative z-[1]">
         <main id="main" tabIndex={-1} className="outline-none">

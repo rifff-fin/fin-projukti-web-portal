@@ -1,7 +1,7 @@
 # Fin Projukti website — current status
 
 **Updated:** 17 Oct 2026 · **Branch:** `redesign-3d` (not merged or pushed; `main` = the live site)
-**Stage:** Phases 0 and 1 done (new stack and design, every section rebuilt). **Next: Phase 2, the 3D logo.**
+**Stage:** Phases 0–3 done (new design, the real-time 3D logo, the scroll story). **Next: Phase 4, the loader and polish.**
 
 > Keep this file current: update it at the end of every piece of work (what changed, what's
 > next, what's blocked).
@@ -10,18 +10,27 @@
 
 1. **Header**: the logo mark + "Fin Projukti", links, "Start a project". Clear over the hero,
    solid with a hairline after scrolling. Phones: a full-screen menu.
-2. **Hero**: "The end of manual limits. *The beginning of AI growth.*", the lede, two buttons;
-   the logo (flat for now; the 3D logo replaces it in Phase 2) on a faint grid with a warm glow.
+2. **Hero**: "The end of manual limits. *The beginning of AI growth.*", the lede, two buttons,
+   and the **live 3D logo**. On first sight the square foot rises and lights up, then a white-hot
+   node leaves it and lays the path behind it, step by step; at the top the ball forms around the
+   node, flashes and sends out a ring of light. Then a pulse runs from the square to the circle
+   every few seconds (hovering "Automate my business" or "Start a project" sends one at once);
+   the logo floats and turns a little towards the mouse.
 3. **Tech band**: a slow strip of the stack.
-4. **01 Process**: "From manual *to automatic.*" The steps are held on screen while you scroll,
-   and the current step lights up (the 3D node will climb the logo here in Phase 3).
+4. **01 Process**: "From manual *to automatic.*" On wide screens the logo glides over from the
+   hero with one full turn. Then the stage holds while you scroll and the **node climbs the logo
+   corner by corner**: each of the four corners is a step (Discovery, Architecture, Engineering,
+   Launch). The path behind the node stays lit, each corner lights as it is reached, and at
+   "Launch & Scale" the node runs on to the ball, which flares. Phones: the logo on top, the
+   current step below with four progress bars.
 5. **02 Services**: five rows that open to show the details and the stack.
 6. **03 Selected work**: filters (All, Websites, Full-stack apps, Automation & AI), six cards,
    then "Show all".
 7. **04 About**: the BRACU story, প্রযুক্তি, three values, the numbers.
 8. **05 Contact**: the brief form (checks as you go, spam trap, sends to Web3Forms; after
    sending, "Continue on WhatsApp" with a prefilled message) and the direct lines.
-9. **Footer**: "Got a project *in mind?*" with the logo, site map, socials.
+9. **Footer**: "Got a project *in mind?*" with the 3D logo (desktop; the button sends a pulse
+   up it), site map, socials.
 
 ## Done
 
@@ -30,14 +39,15 @@
 | Repo check | Local was 7 commits behind GitHub; fast-forwarded to `e6a68e4` (nothing lost). |
 | 0 Setup | Stack upgraded to the LANGLOK versions; framer-motion, react-icons, lucide and svgr removed; ESLint + Prettier; design tokens; fonts; all copy in `copy.ts`; `CLAUDE.md`; this file. |
 | 1 Skeleton | Every section rebuilt in the "Signal Path" design; the logo traced into exact geometry (`brand/logoSpec.ts`, 99.7% match) used by the SVG mark and favicon; Motion switch; scroll reveals; the contact flow from Phase 5 (validation, honeypot, WhatsApp follow-up). |
+| 2 3D logo | Built from the same geometry (tubes + ball joints, rounded foot, end ball), satin orange with a clear coat, studio light panels; one shader drives the build, the node, the corner lights and the ball; halo and ring sprites instead of bloom. |
+| 3 Scroll story | One canvas behind the page, stations (`hero`, `process`, `cta`), the hero → Process glide with a turn, the Process climb tied to scroll, pulses on button hover. Reduced motion: the complete logo, standing still. |
 
 ## Next
 
-1. **Phase 2, the 3D logo**: geometry from `logoSpec.ts`, material, lighting, the node, the
-   build, the heartbeat, pointer tilt; in the hero.
-2. **Phase 3, the scroll story**: hero → Process glide, the node climbing the corners, the CTA
-   station, pulses from button hovers.
-3. Phase 4 loader and polish; Phase 6 SEO, performance and accessibility; Phase 7 launch.
+1. **Phase 4, the loader**: a small 2D logo whose trace fills as the page loads; the screen
+   opens in a circle from the ball.
+2. Phase 6: SEO (Open Graph image, structured data, sitemap), a Lighthouse pass, README rewrite.
+3. Phase 7: merge into `main` and launch (needs your go-ahead).
 
 ## Waiting on you (master plan §1.5)
 
@@ -71,3 +81,6 @@ python scripts/check-logo.py        # logo geometry vs public/finlogo.png
   (stack, tooling, tokens, copy) and Phase 1 (all sections in the new design, exact logo
   geometry, Motion switch, contact flow) on `redesign-3d`. Checked at 1440 × 900 and 390 × 844:
   no console errors, no sideways scroll.
+- **17 Oct 2026**: Phases 2–3. The real-time 3D logo (built from `logoSpec.ts`), the node's
+  build, heartbeat and climb, the glide from the hero to Process, the footer station. Checked
+  at 1440 × 900 and 390 × 844 with motion on and off: no console errors, no sideways scroll.
