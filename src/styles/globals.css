@@ -291,3 +291,10 @@ html[data-reduced] *::after {
     transform: translateX(-50%);
   }
 }
+
+/* SplitText line masks clip at the line box; give descenders and italic overhangs room
+   (Instrument Serif's g, y and the slant of the last letter) without moving the text. */
+.split-line-mask {
+  padding: 0.06em 0.12em 0.18em 0.02em;
+  margin: -0.06em -0.12em -0.18em -0.02em;
+}

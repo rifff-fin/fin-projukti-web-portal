@@ -6,11 +6,47 @@
     <meta name="theme-color" content="#0A0A0B" />
     <meta name="color-scheme" content="dark" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>Fin Projukti — Web, apps, automation and AI from Dhaka</title>
     <meta
       name="description"
       content="Fin Projukti is a BRAC University student-led studio in Dhaka. We design and engineer websites, apps and automations that take businesses from manual work to AI-powered growth."
     />
+    <link rel="canonical" href="https://finprojukti.tech/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fin Projukti" />
+    <meta property="og:url" content="https://finprojukti.tech/" />
+    <meta property="og:title" content="Fin Projukti — The end of manual limits. The beginning of AI growth." />
+    <meta
+      property="og:description"
+      content="A BRAC University student-led studio engineering websites, apps and automations for Bangladeshi businesses."
+    />
+    <meta property="og:image" content="https://finprojukti.tech/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Fin Projukti logo in 3D, a glowing node climbing its steps, beside the headline." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://finprojukti.tech/og.jpg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Fin Projukti",
+        "url": "https://finprojukti.tech/",
+        "logo": "https://finprojukti.tech/icon-512.png",
+        "email": "finprojukti.tech@gmail.com",
+        "slogan": "The end of manual limits. The beginning of AI growth.",
+        "description": "A BRAC University student-led studio in Dhaka for web, apps, automation and AI.",
+        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
+        "sameAs": [
+          "https://www.instagram.com/finprojukti",
+          "https://www.facebook.com/share/1Fxj2fg7TS/",
+          "https://www.linkedin.com/in/fin-projukti-4785163a2/",
+          "https://github.com/rifff-fin"
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,9 +58,119 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@500&text=%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%AF%E0%A7%81%E0%A6%95%E0%A7%8D%E0%A6%A4%E0%A6%BF%E0%A7%B3&display=swap"
     />
+    <!--
+      Loader (home page), painted with the first frame, before any script: a small copy of
+      the logo whose trace fills along the path as the page gets ready (lib/preloader.ts);
+      then the end ball lights and the screen opens in a circle from it.
+    -->
+    <style>
+      html.preloading {
+        overflow: hidden;
+      }
+      #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: grid;
+        place-items: center;
+        background: #0a0a0b;
+        /* if the app never starts, don't hide the page for ever */
+        animation: pl-away 0.5s ease 10s forwards;
+      }
+      #preloader .pl-mark {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 26px;
+      }
+      #preloader svg {
+        height: 84px;
+        width: auto;
+        overflow: visible;
+      }
+      #preloader .pl-track,
+      #preloader .pl-trace {
+        fill: none;
+        stroke-width: 42;
+        stroke-linejoin: round;
+      }
+      #preloader .pl-track {
+        stroke: #1d1d21;
+      }
+      #preloader .pl-trace {
+        stroke: #ff7a1b;
+        stroke-dasharray: 1 1;
+        stroke-dashoffset: 0.94;
+        transition: stroke-dashoffset 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      #preloader .pl-foot {
+        fill: #1d1d21;
+        animation: pl-on 0.35s ease 0.1s forwards;
+      }
+      #preloader .pl-ball {
+        fill: #1d1d21;
+        transition: fill 0.2s ease;
+      }
+      #preloader.is-lit .pl-ball {
+        fill: #ff7a1b;
+      }
+      #preloader .pl-ring {
+        fill: none;
+        stroke: #ff9a4d;
+        stroke-width: 6;
+        opacity: 0;
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+      #preloader.is-lit .pl-ring {
+        animation: pl-ring 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      #preloader .pl-count {
+        font: 400 11px/1 'Geist Mono', ui-monospace, Menlo, Consolas, monospace;
+        letter-spacing: 0.2em;
+        color: #8c8c93;
+        font-variant-numeric: tabular-nums;
+      }
+      @keyframes pl-on {
+        to {
+          fill: #ff7a1b;
+        }
+      }
+      @keyframes pl-ring {
+        0% {
+          opacity: 0.9;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(2.6);
+        }
+      }
+      @keyframes pl-away {
+        to {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="preloader" aria-hidden="true">
+      <div class="pl-mark">
+        <svg viewBox="126 64 248 375">
+          <path class="pl-track" d="M151.5 404V307.5H247V201.5H342.5V95.5" />
+          <path class="pl-trace" d="M151.5 404V307.5H247V201.5H342.5V95.5" pathLength="1" />
+          <rect class="pl-foot" x="126" y="391" width="51" height="48" rx="8" />
+          <circle class="pl-ball" cx="342.5" cy="95.5" r="31.5" />
+          <circle class="pl-ring" cx="342.5" cy="95.5" r="31.5" />
+        </svg>
+        <span class="pl-count">000</span>
+      </div>
+    </div>
+    <script>
+      document.documentElement.classList.add('preloading');
+    </script>
+    <div id="root" inert></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

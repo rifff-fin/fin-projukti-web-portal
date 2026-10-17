@@ -9,6 +9,8 @@ import { isRevealed, whenRevealed } from '../lib/preloader';
  *                               h2[data-reveal="off"] is animated by its section instead
  *   [data-reveal="intro"]       same, on load (the hero headline; after the loader lifts)
  *   [data-reveal="intro-fade"]  fades up on load, after the headline
+ *   [data-reveal="intro-rise"]  rises on load without fading (painted under the loader, so it
+ *                               counts for LCP)
  *   [data-chapter-head]         hairline draws left to right, labels follow
  *   [data-reveal="fade"]        fades up
  *   [data-reveal="stagger"]     its children fade up in turn
@@ -24,6 +26,7 @@ export function useReveals(scope: RefObject<HTMLElement | null>) {
           SplitText.create(el, {
             type: 'lines',
             mask: 'lines',
+            linesClass: 'split-line',
             autoSplit: true,
             onSplit: (self) => {
               const rise = gsap.from(self.lines, {
@@ -56,6 +59,17 @@ export function useReveals(scope: RefObject<HTMLElement | null>) {
             delay: 0.45,
             stagger: 0.08,
             ease: 'power2.out',
+            paused: !isRevealed(),
+          });
+          whenRevealed(() => tween.play());
+        }
+        const introRise = root.querySelectorAll<HTMLElement>('[data-reveal="intro-rise"]');
+        if (introRise.length) {
+          const tween = gsap.from(introRise, {
+            y: 26,
+            duration: 1.2,
+            delay: 0.35,
+            ease: 'expo.out',
             paused: !isRevealed(),
           });
           whenRevealed(() => tween.play());

@@ -1,13 +1,16 @@
 # Fin Projukti website — current status
 
 **Updated:** 17 Oct 2026 · **Branch:** `redesign-3d` (not merged or pushed; `main` = the live site)
-**Stage:** Phases 0–3 done (new design, the real-time 3D logo, the scroll story). **Next: Phase 4, the loader and polish.**
+**Stage:** Phases 0–6 done (design, 3D logo, scroll story, loader, contact, SEO). **Next: your review, then Phase 7 (launch).**
 
 > Keep this file current: update it at the end of every piece of work (what changed, what's
 > next, what's blocked).
 
 ## What you see now (home page, top to bottom)
 
+0. **Loader** (first load): a small copy of the logo whose trace fills along the path as the
+   page gets ready (with a 000–100 count); the end ball lights, and the screen opens in a
+   circle from it onto the hero, where the 3D build starts.
 1. **Header**: the logo mark + "Fin Projukti", links, "Start a project". Clear over the hero,
    solid with a hairline after scrolling. Phones: a full-screen menu.
 2. **Hero**: "The end of manual limits. *The beginning of AI growth.*", the lede, two buttons,
@@ -41,13 +44,18 @@
 | 1 Skeleton | Every section rebuilt in the "Signal Path" design; the logo traced into exact geometry (`brand/logoSpec.ts`, 99.7% match) used by the SVG mark and favicon; Motion switch; scroll reveals; the contact flow from Phase 5 (validation, honeypot, WhatsApp follow-up). |
 | 2 3D logo | Built from the same geometry (tubes + ball joints, rounded foot, end ball), satin orange with a clear coat, studio light panels; one shader drives the build, the node, the corner lights and the ball; halo and ring sprites instead of bloom. |
 | 3 Scroll story | One canvas behind the page, stations (`hero`, `process`, `cta`), the hero → Process glide with a turn, the Process climb tied to scroll, pulses on button hover. Reduced motion: the complete logo, standing still. |
+| 4 Loader | The 2D logo trace fills with the page's readiness (fonts, the 3D logo; 1.1–2.6 s), the ball lights, the screen opens in a circle from it. Reduced motion: a short fade. |
+| 5 Contact | Done in Phase 1: validation on leaving a field and on submit (focus to the first error), honeypot + minimum fill time, Web3Forms, success panel with "Continue on WhatsApp" (prefilled). |
+| 6 SEO etc. | Open Graph/Twitter image rendered from the live hero (`public/og.jpg`), Organization JSON-LD, canonical, robots.txt, sitemap.xml, PNG icons from the logo geometry (`scripts/make-icons.py`), `netlify.toml`, README rewritten. |
 
 ## Next
 
-1. **Phase 4, the loader**: a small 2D logo whose trace fills as the page loads; the screen
-   opens in a circle from the ball.
-2. Phase 6: SEO (Open Graph image, structured data, sitemap), a Lighthouse pass, README rewrite.
-3. Phase 7: merge into `main` and launch (needs your go-ahead).
+1. **Your review** of the branch (`npm run dev`, then http://localhost:5180; turn the Motion
+   switch on to see the full version on this PC).
+2. **Phase 7, launch**: merge `redesign-3d` into `main` and push; Netlify deploys it. Needs
+   your go-ahead.
+3. After launch: a Lighthouse run on the live URL; a test brief through the live form.
+4. Optional: a still render of the 3D logo for the no-WebGL fallback (today it is the flat SVG).
 
 ## Waiting on you (master plan §1.5)
 
@@ -65,6 +73,12 @@
   desktop) to see the full version.
 - Dev server: http://localhost:5180 (5173 is the LANGLOK project).
 - Git needs `git -c safe.directory=D:/finprojukti …` on this machine.
+- Bundle: initial JS 141 KB gz (budget 160); the 3D chunk 271 KB gz, loaded lazily (at once
+  under the loader). LCP measured locally on the production build: 2.7 s before the lede change
+  (the loader holds the headline until the page is ready); re-measure on the live site.
+- The brief form has not been sent for real from here (it would reach the real inbox): send one
+  test brief after launch.
+- `public/og.jpg` is a screenshot of the hero; re-render it if the headline or logo changes.
 
 ## How to run and check
 
@@ -84,3 +98,7 @@ python scripts/check-logo.py        # logo geometry vs public/finlogo.png
 - **17 Oct 2026**: Phases 2–3. The real-time 3D logo (built from `logoSpec.ts`), the node's
   build, heartbeat and climb, the glide from the hero to Process, the footer station. Checked
   at 1440 × 900 and 390 × 844 with motion on and off: no console errors, no sideways scroll.
+- **17 Oct 2026**: Phases 4–6. The loader (logo trace → circle reveal), SEO (OG image from the
+  live hero, JSON-LD, sitemap, robots), icons from the logo geometry, `netlify.toml`, README.
+  Fixed SplitText clipping the headline's descenders. Production build checked: no console
+  errors, every control labelled; menu, services, filters and form validation tested.

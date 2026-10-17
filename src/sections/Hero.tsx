@@ -27,7 +27,7 @@ export function Hero() {
             <Emph text={hero.title} />
           </h1>
           <p
-            data-reveal="intro-fade"
+            data-reveal="intro-rise"
             className="mt-7 max-w-[36rem] text-[length:var(--text-lede)] leading-relaxed text-bone lg:mt-9"
           >
             {hero.lede}

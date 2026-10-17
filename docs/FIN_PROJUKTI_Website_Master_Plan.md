@@ -242,8 +242,9 @@ The build waits for the loader to lift.
   Turned 3/4 (yaw −28°, pitch 8°).
 - **Travel to Process** (wide screens only): the logo stays on the centre line, glides across,
   turns once, and lands facing almost front (yaw −14°) so the node is easy to follow.
-- **Process station** (`process`): a CSS-sticky plate. Section progress drives the node
-  through four holds, one at each corner, then to the circle. Idle pulses stop here, because
+- **Process station** (`process`): a plate in a CSS-sticky stage (a tall track holds the
+  stage; no GSAP pin). Track progress drives the node through four holds, one at each corner,
+  then to the circle; the path behind the node stays lit. Idle pulses stop here, because
   scroll owns the node.
 - **CTA station** (`cta`, footer): smaller, the circle on; button hover fires a pulse.
 - Between Process and CTA the logo **cuts** while off screen.
@@ -251,9 +252,9 @@ The build waits for the loader to lift.
 ### 3.6 Reduced motion and no WebGL
 
 - **Reduced motion** (OS setting or the Motion switch off): the logo is shown complete, with
-  the circle lit. No build, no pulses, no float or pointer tilt, no travel (only cuts). In
-  Process the node still moves to the active step's corner, because scroll drives it and
-  nothing moves on its own.
+  the circle lit. No build, no pulses, no float or pointer tilt, no travel (only cuts).
+  Process becomes a plain list of the four steps beside the complete logo (nothing is held
+  on screen).
 - **No WebGL:** every station shows the flat SVG logo, and Process highlights the corners
   in 2D.
 

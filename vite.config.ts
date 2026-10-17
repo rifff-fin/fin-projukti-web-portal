@@ -9,5 +9,7 @@ export default defineConfig({
   optimizeDeps: {
     include: ['three', '@react-three/fiber', '@react-three/drei', 'maath/easing'],
   },
+  // the 3D chunk (three + R3F + drei, ~270 KB gz) is loaded lazily on purpose
+  build: { chunkSizeWarningLimit: 1100 },
   server: { port: 5180, strictPort: true },
 });
