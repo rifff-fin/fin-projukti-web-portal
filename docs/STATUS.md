@@ -1,8 +1,8 @@
 # Fin Projukti website — current status
 
-**Updated:** 18 Oct 2026 · **Branch:** `founder-page` (the new `/founder/` page; not on `main` yet). `main` = the live site.
-**Stage:** **Launched** (Phase 7): Phases 0–6, the **Fin NFC Card** section and the **mockup illustrations** are live on finprojukti.tech. New: the **founder page** (`/founder/`), waiting to be published.
-**Next: publish `/founder/` (your go-ahead), the after-launch checks below, and the NFC answers.**
+**Updated:** 18 Oct 2026 · **Branch:** `main` (= the live site; `founder-page` merged and pushed).
+**Stage:** **Launched** (Phase 7): Phases 0–6, the **Fin NFC Card** section and the **mockup illustrations** are live on finprojukti.tech. The **founder page** (`/founder/`) is live too.
+**Next: the after-launch checks below, and the NFC answers.**
 
 > Keep this file current: update it at the end of every piece of work (what changed, what's
 > next, what's blocked).
@@ -171,3 +171,4 @@ python scripts/make-qr.py           # the NFC card's QR (pip install segno)
   header wrapped at 768 px (menu below 1024 now); `/#work` from another page now lands on
   Work. Checked at 1440 × 900 and 390 × 844, motion on and off, and the production build: no
   console errors, no sideways scroll. On branch `founder-page`, not published.
+- **18 Oct 2026**: On the user's go-ahead, `founder-page` merged into `main` and pushed: `/founder/` is live.
