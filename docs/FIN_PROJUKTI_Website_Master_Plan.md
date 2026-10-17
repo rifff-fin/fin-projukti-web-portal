@@ -323,13 +323,14 @@ One page (`/`), anchors for navigation. Order:
 | 1 | Hero | `#top` | headline, sub, two buttons, 3D logo (station `hero`), meta line |
 | 2 | Tech marquee | — | mono, separators are tiny square→circle glyphs, pauses on hover |
 | 3 | Process | `#process` | "From manual to *automatic.*" sticky 3D logo + 4 steps |
-| 4 | Services | `#services` | 5 services as an index list; a row opens to show details and tags |
-| 5 | Work | `#work` | filter chips (All / Web / MERN / Automation & AI), 6 cards then "Show all" |
-| 6 | About | `#about` | "From BRACU to *big tech.*" story, the meaning of "Fin", 3 values, stats |
-| 7 | Contact | `#contact` | brief form + direct lines |
-| 8 | Footer | — | "Got a project *in mind?*" + 3D logo (station `cta`), links, socials |
+| 4 | Services | `#services` | 6 services as an index list (E-commerce added Oct 2026); a row opens to show details, tags and a drawn mockup |
+| 5 | Fin NFC | `#nfc` | our product, the Fin NFC Card: live card + phone preview, how it works, what's included, the order form (added Oct 2026) |
+| 6 | Work | `#work` | filter chips (All / Web / MERN / Automation & AI), 6 cards with mockup covers, then "Show all" |
+| 7 | About | `#about` | "From BRACU to *big tech.*" story, the meaning of "Fin", 3 values, stats |
+| 8 | Contact | `#contact` | brief form + direct lines |
+| 9 | Footer | — | "Got a project *in mind?*" + 3D logo (station `cta`), links, socials |
 
-Header: mark + "Fin Projukti", links (Process, Services, Work, About), "Start a project".
+Header: mark + "Fin Projukti", links (Process, Services, NFC Card, Work, About), "Start a project".
 Transparent over the hero; after 40 px of scroll it gets a solid `--void` background with a
 blur and a bottom hairline. Mobile: a full-screen menu with large links. Bottom-left: the
 Motion switch.
@@ -347,8 +348,21 @@ Motion switch.
 - **Services:** 5 rows: number, title, short line, and an arrow. Clicking opens the row (an
   accessible disclosure); hover draws an orange trace along the row's top hairline. Opened:
   description and tags.
-- **Work:** cards with category, year, title, description, a metric (flagged), tags, and
-  links (Live ↗ / Code ↗). Cards without links get a "Case study on request" note.
+- **Fin NFC (added Oct 2026):** chapter `03 — Fin NFC`, "Tap. Connect. *Grow.*". Left: a
+  sticky stage with the card (rebuilt from `docs/reference/fin-nfc-card.png`: front = name,
+  title, a real QR to `/#nfc`; back = waves + "Tap · Connect · Grow") in front of a phone
+  showing the profile it opens. Both fill in live from the setup form. Motion: on entry the
+  card turns from back to front and taps the phone (rings, the phone wakes); it tilts towards
+  the pointer; "Flip" and "Tap it again" buttons. Static: front + open profile. Right: how it
+  works (3 steps), what you get, the order form (Web3Forms, then WhatsApp; price and delivery
+  are confirmed by reply — no prices on the site until the client gives them).
+- **Mockups (added Oct 2026):** `components/mockups/`: one 480 × 300 SVG scene per kind of
+  work (storefront, dashboard, workflow, design canvas, CMS site, motion site, NFC, quake map,
+  POS, QR menu, kanban, job board), drawn in the tokens with one orange accent. Loaded lazily,
+  animated with CSS only while on screen, still under reduced motion. PNG exports in
+  `docs/mockups/`.
+- **Work:** cards with a mockup cover, category, year, title, description, a metric (flagged),
+  tags, and links (Live ↗ / Code ↗). Cards without links get a "Case study on request" note.
 - **About:** two-column story, "Fin = finish" callout, three value cards, stats row
   (TODO(client)).
 - **Contact:** left: title, response promise, direct lines (email, phone, WhatsApp, location),
@@ -399,11 +413,13 @@ src/
   store/scene.ts             anchors, progress triggers, pulse requests
   components/Header.tsx  Footer.tsx  Logo.tsx  LogoPlate.tsx  MotionSwitch.tsx
              SceneHost.tsx  icons.tsx  ui/(Button, ChapterHead, Container, Emph, Eyebrow)
-  sections/Hero.tsx  TechMarquee.tsx  Process.tsx  Services.tsx  Work.tsx  About.tsx  Contact.tsx
+  sections/Hero.tsx  TechMarquee.tsx  Process.tsx  Services.tsx  Nfc.tsx  Work.tsx  About.tsx  Contact.tsx
+  components/nfc/(NfcCard, ProfilePhone)  components/mockups/(Mockup, kit, scenes, scenes-work)
+  brand/qr.ts  lib/web3forms.ts  styles/nfc.css  mockups.css
   three/Scene.tsx  Lighting.tsx  LogoModel.tsx  logoGeometry.ts  logoMaterial.ts
         stations.ts  halo.ts
 docs/  FIN_PROJUKTI_Website_Master_Plan.md  STATUS.md
-scripts/check-logo.py
+scripts/check-logo.py  make-icons.py  make-qr.py
 ```
 
 ---

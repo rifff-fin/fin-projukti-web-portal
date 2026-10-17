@@ -5,7 +5,7 @@
 export function ChapterHead({
   index,
   label,
-  total = '05',
+  total = '06',
 }: {
   index: string;
   label: string;

@@ -84,6 +84,34 @@ export const MapPin = (p: IconProps) => (
   </Svg>
 );
 
+/** NFC: three arcs opening to the right (the contactless sign). */
+export const Contactless = (p: IconProps) => (
+  <Svg {...p} strokeLinecap="round">
+    <path d="M7 9a4.5 4.5 0 0 1 0 6M10.5 6.5a8.5 8.5 0 0 1 0 11M14 4a12.5 12.5 0 0 1 0 16" />
+  </Svg>
+);
+
+export const Flip = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3" />
+    <path d="M18.5 3v4h-4M5.5 21v-4h4" />
+  </Svg>
+);
+
+export const LinkIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1" />
+    <path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" />
+  </Svg>
+);
+
+export const UserPlus = (p: IconProps) => (
+  <Svg {...p}>
+    <circle cx="9.5" cy="8" r="3.5" />
+    <path d="M3 20c.6-3.5 3.2-5.5 6.5-5.5S15.4 16.5 16 20M18.5 8v6M15.5 11h6" />
+  </Svg>
+);
+
 function Brand({ size = 18, d, ...rest }: IconProps & { d: string }) {
   return (
     <svg

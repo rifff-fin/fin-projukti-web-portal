@@ -1,7 +1,8 @@
 # Fin Projukti website — current status
 
-**Updated:** 17 Oct 2026 · **Branch:** `redesign-3d` (not merged or pushed; `main` = the live site)
-**Stage:** Phases 0–6 done (design, 3D logo, scroll story, loader, contact, SEO). **Next: your review, then Phase 7 (launch).**
+**Updated:** 18 Oct 2026 · **Branch:** `redesign-3d` (not merged or pushed; `main` = the live site)
+**Stage:** Phases 0–6 done, plus the **Fin NFC Card** section and the **mockup illustrations**.
+**Next: your review (and the NFC answers below), then Phase 7 (launch).**
 
 > Keep this file current: update it at the end of every piece of work (what changed, what's
 > next, what's blocked).
@@ -26,13 +27,25 @@
    Launch). The path behind the node stays lit, each corner lights as it is reached, and at
    "Launch & Scale" the node runs on to the ball, which flares. Phones: the logo on top, the
    current step below with four progress bars.
-5. **02 Services**: five rows that open to show the details and the stack.
-6. **03 Selected work**: filters (All, Websites, Full-stack apps, Automation & AI), six cards,
-   then "Show all".
-7. **04 About**: the BRACU story, প্রযুক্তি, three values, the numbers.
-8. **05 Contact**: the brief form (checks as you go, spam trap, sends to Web3Forms; after
-   sending, "Continue on WhatsApp" with a prefilled message) and the direct lines.
-9. **Footer**: "Got a project *in mind?*" with the 3D logo (desktop; the button sends a pulse
+5. **02 Services**: six rows (UI/UX, Web & App, **E-commerce** (new), Automation, Webflow,
+   Framer). A row opens to show the details, the stack and a **drawn mockup** of that kind
+   of work (an online store template, a dashboard, an n8n workflow…), animated while on screen.
+6. **03 Fin NFC** (new): our own product, the **Fin NFC Card**. "Tap. Connect. *Grow.*" A
+   stage shows the card (rebuilt from your print design: front = name, title and a real QR
+   code to finprojukti.tech/#nfc; back = TAP · CONNECT · GROW) in front of a phone with the
+   profile it opens. When it comes into view the card turns from its back to its front and
+   taps the phone: rings go out, the phone wakes, the profile rises in. It tilts towards the
+   mouse; "Flip the card" and "Tap it again" buttons. Beside it: how it works (Tap, Connect,
+   Grow), what you get, and **"Set up your card"**: name, job title, company, phone, email,
+   links, how many cards. The card and the phone fill in live as you type. "Order my card"
+   sends it to the inbox (Web3Forms), then offers WhatsApp with the order prefilled; a link
+   also orders straight on WhatsApp.
+7. **04 Selected work**: filters, six cards (each with a mockup cover now), then "Show all".
+8. **05 About**: the BRACU story, প্রযুক্তি, three values, the numbers.
+9. **06 Contact**: the brief form (checks as you go, spam trap, sends to Web3Forms; after
+   sending, "Continue on WhatsApp" with a prefilled message) and the direct lines. "E-commerce"
+   and "Fin NFC Card" are now among the services to tick.
+10. **Footer**: "Got a project *in mind?*" with the 3D logo (desktop; the button sends a pulse
    up it), site map, socials.
 
 ## Done
@@ -47,6 +60,8 @@
 | 4 Loader | The 2D logo trace fills with the page's readiness (fonts, the 3D logo; 1.1–2.6 s), the ball lights, the screen opens in a circle from it. Reduced motion: a short fade. |
 | 5 Contact | Done in Phase 1: validation on leaving a field and on submit (focus to the first error), honeypot + minimum fill time, Web3Forms, success panel with "Continue on WhatsApp" (prefilled). |
 | 6 SEO etc. | Open Graph/Twitter image rendered from the live hero (`public/og.jpg`), Organization JSON-LD, canonical, robots.txt, sitemap.xml, PNG icons from the logo geometry (`scripts/make-icons.py`), `netlify.toml`, README rewritten. |
+| Fin NFC | New section `03 Fin NFC` (`sections/Nfc.tsx`): the card in HTML/CSS 3D from `docs/reference/fin-nfc-card.png` (Quicksand + Orbitron, real QR from `scripts/make-qr.py`), the phone profile, GSAP flip/tap/tilt, the order form (shared Web3Forms code now in `lib/web3forms.ts`, form fields in `components/ui/form.tsx`). Nav link "NFC Card"; chapters renumbered to 06. |
+| Mockups | 12 drawn SVG scenes (`components/mockups/`): storefront (e-commerce template), dashboard, n8n workflow, design canvas, CMS site, motion site, NFC tap, quake map, POS, QR menu, kanban, job board. On every Services row and Work card; lazy chunk (11.5 KB gz); CSS animations that run only on screen. New service row "E-commerce". PNGs (1600 × 1000) in `docs/mockups/`, plus the NFC card front/back. |
 
 ## Next
 
@@ -56,8 +71,24 @@
    your go-ahead.
 3. After launch: a Lighthouse run on the live URL; a test brief through the live form.
 4. Optional: a still render of the 3D logo for the no-WebGL fallback (today it is the flat SVG).
+5. After launch: send one test card order through the live NFC form (it reaches the real
+   inbox, so it was not sent from here).
 
 ## Waiting on you (master plan §1.5)
+
+**Fin NFC Card (new):**
+- The price (one card, and team/bulk prices)? Until then the site says "we reply with the
+  price and delivery time".
+- Delivery: Dhaka only, or all of Bangladesh? How long?
+- Profile updates: included, and for how long? (The copy promises "updates without
+  reprinting"; marked `TODO(client)`.) Where are the profiles hosted?
+- Reply time for card orders: 24 h like briefs?
+- E-commerce service: which payment gateways do you integrate (bKash, Nagad, SSLCommerz…)?
+  The copy says "local payment gateways" for now.
+- The mockups are illustrations in the site's style, not screenshots. For projects with a
+  live site you may prefer a real screenshot later.
+
+**From before:**
 
 - Dark site, permanently (as the SRS says)? Or light like LANGLOK?
 - Are the numbers real (50+ solutions, 30+ businesses, project metrics like "3× revenue")?
@@ -73,8 +104,8 @@
   desktop) to see the full version.
 - Dev server: http://localhost:5180 (5173 is the LANGLOK project).
 - Git needs `git -c safe.directory=D:/finprojukti …` on this machine.
-- Bundle: initial JS 141 KB gz (budget 160); the 3D chunk 271 KB gz, loaded lazily (at once
-  under the loader). LCP measured locally on the production build: 2.7 s before the lede change
+- Bundle: initial JS 147 KB gz (budget 160); the mockup scenes 11.5 KB gz and the 3D chunk
+  271 KB gz, both loaded lazily (the 3D at once under the loader). LCP measured locally on the production build: 2.7 s before the lede change
   (the loader holds the headline until the page is ready); re-measure on the live site.
 - The brief form has not been sent for real from here (it would reach the real inbox): send one
   test brief after launch.
@@ -87,6 +118,7 @@ npm install
 npm run dev                         # http://localhost:5180
 npm run typecheck && npm run lint
 python scripts/check-logo.py        # logo geometry vs public/finlogo.png
+python scripts/make-qr.py           # the NFC card's QR (pip install segno)
 ```
 
 ## Log
@@ -102,3 +134,8 @@ python scripts/check-logo.py        # logo geometry vs public/finlogo.png
   live hero, JSON-LD, sitemap, robots), icons from the logo geometry, `netlify.toml`, README.
   Fixed SplitText clipping the headline's descenders. Production build checked: no console
   errors, every control labelled; menu, services, filters and form validation tested.
+- **18 Oct 2026**: The Fin NFC Card section (live card + phone preview from the print design,
+  flip/tap/tilt, the order form to Web3Forms + WhatsApp) and 12 drawn mockup scenes on
+  Services and Work (new "E-commerce" service), with PNG exports in `docs/mockups/`. Checked at
+  1440 × 900 and 390 × 844 with motion on and off: no console errors, no sideways scroll;
+  form validation and the WhatsApp link checked; production build checked.

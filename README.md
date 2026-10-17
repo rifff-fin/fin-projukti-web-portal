@@ -38,17 +38,23 @@ Node 22 or newer.
 src/
   content/copy.ts        every word on the site (edit text here)
   brand/logoSpec.ts      the logo's measured geometry (SVG mark, favicon, loader and 3D use it)
-  sections/              one file per page section
+  brand/qr.ts            the QR code on the Fin NFC card preview (made by scripts/make-qr.py)
+  sections/              one file per page section (Nfc.tsx = the Fin NFC Card)
   components/            header, footer, logo, logo plates (3D stations), Motion switch
+  components/nfc/        the NFC card (front/back) and the phone profile it opens
+  components/mockups/    the drawn UI mockups on Services and Work (one SVG scene each)
   three/                 the 3D logo: geometry, material, lighting, stations, scene
   lib/                   GSAP setup, Lenis, motion preference, loader
   styles/tokens.css      colours, type, spacing, easing
 docs/
   FIN_PROJUKTI_Website_Master_Plan.md   the full plan
   STATUS.md                             what's done, what's next
+  mockups/                              the mockups and the NFC card as PNGs (for posts, decks)
+  reference/fin-nfc-card.png            the NFC card's print design
 scripts/
   check-logo.py          checks logoSpec.ts against public/finlogo.png (Python + Pillow)
   make-icons.py          renders the PNG app icons from the same geometry
+  make-qr.py             encodes the card preview's QR code (needs `pip install segno`)
 ```
 
 ## Motion and accessibility

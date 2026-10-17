@@ -1,0 +1,824 @@
+/*
+ * Mockup scenes (components/mockups). An element's own style is the still picture — what
+ * reduced motion shows (globals.css cuts every animation short) — and the animations below
+ * bring it to life while the scene is on screen ([data-play], set by Mockup.tsx).
+ * Generic moves are m-*; the rest belong to one scene each (sf- storefront, wf- workflow,
+ * cv- design canvas, cms-, mo- motion site, nf- NFC, qk- quake, pos-, mn- QR menu,
+ * kb- kanban, jb- jobs).
+ */
+.mock:not([data-play]) * {
+  animation-play-state: paused !important;
+}
+
+/* ---- generic ---- */
+
+/* a line that draws itself (pathLength=100), holds, fades, draws again */
+.m-draw {
+  stroke-dasharray: 100;
+  animation: m-draw var(--dur, 6s) var(--ease-water-out) infinite;
+}
+@keyframes m-draw {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 1;
+  }
+  55%,
+  88% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  98%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+.m-fade {
+  animation: m-fade 6s var(--ease-water-out) infinite;
+}
+@keyframes m-fade {
+  0%,
+  40% {
+    opacity: 0;
+  }
+  70%,
+  88% {
+    opacity: 1;
+  }
+  98%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* the signal: a short dash that runs along a wire (pathLength=100) once per cycle */
+.m-hop {
+  stroke-dasharray: 14 200;
+  stroke-dashoffset: 20;
+  animation: m-hop 3.6s linear infinite;
+}
+@keyframes m-hop {
+  0% {
+    stroke-dashoffset: 20;
+  }
+  24%,
+  100% {
+    stroke-dashoffset: -110;
+  }
+}
+
+/* a ring that goes out and fades */
+.m-ping {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: m-ping 1.8s var(--ease-water-out) infinite;
+}
+@keyframes m-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.m-blink {
+  animation: m-blink 1.1s steps(1) infinite;
+}
+@keyframes m-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.m-glow {
+  animation: m-glow 2.4s var(--ease-water-sine) infinite;
+}
+@keyframes m-glow {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* a progress ring that fills (pathLength=100, dasharray "68 100") */
+.m-arc {
+  animation: m-arc 6s var(--ease-water-out) infinite;
+}
+@keyframes m-arc {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+  50%,
+  100% {
+    stroke-dasharray: 68 100;
+  }
+}
+
+/* a bar that grows from its left end */
+.m-grow {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: m-grow 6s var(--ease-water-out) infinite;
+}
+@keyframes m-grow {
+  0% {
+    transform: scaleX(0);
+  }
+  50%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes m-float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(var(--amp, -5px));
+  }
+}
+
+/* ---- storefront: the cursor adds a watch, it flies to the cart, the order is confirmed ---- */
+.sf-cursor {
+  animation: sf-cursor 6s var(--ease-water-sine) infinite;
+}
+@keyframes sf-cursor {
+  0% {
+    transform: translate(70px, 40px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  32% {
+    transform: translate(0, 0) scale(1);
+  }
+  36% {
+    transform: translate(0, 0) scale(0.84);
+  }
+  40%,
+  70% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  85%,
+  100% {
+    transform: translate(40px, 50px);
+    opacity: 0;
+  }
+}
+.sf-add {
+  animation: sf-add 6s infinite;
+}
+@keyframes sf-add {
+  0%,
+  35% {
+    fill: var(--carbon);
+  }
+  38%,
+  62% {
+    fill: var(--signal);
+  }
+  72%,
+  100% {
+    fill: var(--carbon);
+  }
+}
+.sf-plus {
+  animation: sf-plus 6s infinite;
+}
+@keyframes sf-plus {
+  0%,
+  35% {
+    stroke: var(--chalk);
+  }
+  38%,
+  62% {
+    stroke: var(--void);
+  }
+  72%,
+  100% {
+    stroke: var(--chalk);
+  }
+}
+.sf-fly {
+  opacity: 0;
+  animation: sf-fly 6s var(--ease-water-sine) infinite;
+}
+@keyframes sf-fly {
+  0%,
+  38% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  49% {
+    transform: translate(80px, -160px) scale(0.8);
+  }
+  58% {
+    transform: translate(177px, -211px) scale(0.5);
+    opacity: 1;
+  }
+  60%,
+  100% {
+    transform: translate(177px, -211px) scale(0.5);
+    opacity: 0;
+  }
+}
+.sf-badge {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sf-badge 6s var(--ease-water-out) infinite;
+}
+@keyframes sf-badge {
+  0%,
+  58% {
+    transform: scale(1);
+  }
+  62% {
+    transform: scale(1.35);
+  }
+  70%,
+  100% {
+    transform: scale(1);
+  }
+}
+.sf-n2 {
+  animation: sf-n2 6s steps(1) infinite;
+}
+@keyframes sf-n2 {
+  60% {
+    opacity: 0;
+  }
+  98% {
+    opacity: 1;
+  }
+}
+.sf-n3 {
+  opacity: 0;
+  animation: sf-n3 6s steps(1) infinite;
+}
+@keyframes sf-n3 {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 0;
+  }
+}
+.sf-toast {
+  opacity: 0;
+  animation: sf-toast 6s var(--ease-water-out) infinite;
+}
+@keyframes sf-toast {
+  0%,
+  62% {
+    transform: translateY(-36px);
+    opacity: 0;
+  }
+  70%,
+  92% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-36px);
+    opacity: 0;
+  }
+}
+
+/* ---- workflow: the signal runs node to node; each node lights as it arrives ---- */
+.wf-flash {
+  opacity: 0;
+  animation: wf-flash 3.6s linear infinite;
+}
+@keyframes wf-flash {
+  0%,
+  18% {
+    opacity: 1;
+  }
+  32%,
+  100% {
+    opacity: 0;
+  }
+}
+.wf-done {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wf-done 3.6s var(--ease-water-out) 2.9s infinite;
+}
+@keyframes wf-done {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  30%,
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+/* ---- design canvas: a collaborator's cursor moves between the boards ---- */
+.cv-cursor {
+  animation: cv-cursor 8s var(--ease-water-sine) infinite;
+}
+@keyframes cv-cursor {
+  0%,
+  8% {
+    transform: translate(0, 0);
+  }
+  26%,
+  42% {
+    transform: translate(-58px, 52px);
+  }
+  62%,
+  76% {
+    transform: translate(42px, 84px);
+  }
+  94%,
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* ---- CMS site: a new item lands in the collection, the site publishes, the tile appears ---- */
+.cms-row {
+  animation: cms-row 6s var(--ease-water-out) infinite;
+}
+@keyframes cms-row {
+  0%,
+  18% {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  28%,
+  90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  98%,
+  100% {
+    opacity: 0;
+  }
+}
+.cms-publish {
+  animation: cms-publish 6s infinite;
+}
+@keyframes cms-publish {
+  0%,
+  40% {
+    fill: var(--signal);
+  }
+  44% {
+    fill: var(--signal-hi);
+  }
+  50%,
+  100% {
+    fill: var(--signal);
+  }
+}
+.cms-tile {
+  animation: cms-tile 6s var(--ease-water-out) infinite;
+}
+@keyframes cms-tile {
+  0%,
+  48% {
+    opacity: 0;
+  }
+  58%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---- motion site: floating cards, a pulse from the square to the circle, scroll, marquee ---- */
+.mo-f1 {
+  --amp: -7px;
+  animation: m-float 3.6s var(--ease-water-sine) infinite alternate;
+}
+.mo-f2 {
+  --amp: -5px;
+  animation: m-float 4.4s var(--ease-water-sine) -1.2s infinite alternate;
+}
+.mo-f3 {
+  --amp: -3px;
+  animation: m-float 5.2s var(--ease-water-sine) -2.4s infinite alternate;
+}
+.mo-sq,
+.mo-ci {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.mo-sq {
+  animation: mo-sq 3.6s var(--ease-water-out) infinite;
+}
+@keyframes mo-sq {
+  0% {
+    transform: scale(0.75);
+  }
+  8%,
+  100% {
+    transform: scale(1);
+  }
+}
+.mo-ci {
+  animation: mo-ci 3.6s var(--ease-water-out) infinite;
+}
+@keyframes mo-ci {
+  0%,
+  20% {
+    transform: scale(1);
+  }
+  27% {
+    transform: scale(1.35);
+  }
+  40%,
+  100% {
+    transform: scale(1);
+  }
+}
+.mo-scroll {
+  animation: mo-scroll 4s var(--ease-water-sine) infinite alternate;
+}
+@keyframes mo-scroll {
+  to {
+    transform: translateY(132px);
+  }
+}
+.mo-marquee {
+  animation: mo-marquee 14s linear infinite;
+}
+@keyframes mo-marquee {
+  to {
+    transform: translateX(-220px);
+  }
+}
+
+/* ---- NFC: the card taps the phone, rings go out, the profile wakes ---- */
+.nf-card {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nf-card 5s var(--ease-water-sine) infinite;
+}
+@keyframes nf-card {
+  0%,
+  16% {
+    transform: translate(0, 0) rotate(0);
+  }
+  30%,
+  46% {
+    transform: translate(34px, -22px) rotate(-3deg);
+  }
+  66%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+}
+.nf-ring {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nf-ring 5s var(--ease-water-out) infinite;
+}
+@keyframes nf-ring {
+  0%,
+  30% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  33% {
+    opacity: 0.9;
+  }
+  62%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+.nf-wake {
+  animation: nf-wake 5s var(--ease-water-out) infinite;
+}
+@keyframes nf-wake {
+  0%,
+  31% {
+    opacity: 0.2;
+  }
+  42%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+/* ---- quake: rings from the epicentre, the seismograph writes ---- */
+.qk-ring {
+  opacity: 0.45;
+}
+.qk-wave {
+  --dur: 4.5s;
+}
+
+/* ---- POS: a tile is tapped, the line joins the ticket, the receipt goes out ---- */
+.pos-tap {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pos-tap 6s var(--ease-water-out) infinite;
+}
+@keyframes pos-tap {
+  0%,
+  20% {
+    transform: scale(1);
+  }
+  24% {
+    transform: scale(0.95);
+  }
+  30%,
+  100% {
+    transform: scale(1);
+  }
+}
+.pos-hit {
+  opacity: 0;
+  animation: pos-hit 6s infinite;
+}
+@keyframes pos-hit {
+  0%,
+  20% {
+    opacity: 0;
+  }
+  24%,
+  50% {
+    opacity: 1;
+  }
+  60%,
+  100% {
+    opacity: 0;
+  }
+}
+.pos-line {
+  animation: pos-line 6s var(--ease-water-out) infinite;
+}
+@keyframes pos-line {
+  0%,
+  26% {
+    transform: translateY(-6px);
+    opacity: 0;
+  }
+  34%,
+  92% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.pos-old {
+  opacity: 0;
+  animation: pos-old 6s infinite;
+}
+@keyframes pos-old {
+  0%,
+  30% {
+    opacity: 1;
+  }
+  34%,
+  96% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.pos-new {
+  animation: pos-new 6s infinite;
+}
+@keyframes pos-new {
+  0%,
+  30% {
+    opacity: 0;
+  }
+  34%,
+  96% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.pos-receipt {
+  animation: pos-receipt 6s var(--ease-water-out) infinite;
+}
+@keyframes pos-receipt {
+  0%,
+  62% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+  70%,
+  94% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---- QR menu: the scan line, items added, the order reaches the kitchen ---- */
+.mn-scan {
+  animation: mn-scan 2.4s var(--ease-water-sine) infinite alternate;
+}
+@keyframes mn-scan {
+  to {
+    transform: translateY(72px);
+  }
+}
+.mn-add {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mn-add 6s var(--ease-water-out) infinite;
+}
+@keyframes mn-add {
+  0%,
+  30% {
+    transform: scale(1);
+  }
+  34% {
+    transform: scale(1.3);
+  }
+  40%,
+  100% {
+    transform: scale(1);
+  }
+}
+.mn-cart {
+  animation: mn-cart 6s var(--ease-water-out) infinite;
+}
+@keyframes mn-cart {
+  0%,
+  36% {
+    transform: translateY(28px);
+    opacity: 0;
+  }
+  44%,
+  92% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(28px);
+    opacity: 0;
+  }
+}
+.mn-ticket {
+  animation: mn-ticket 6s var(--ease-water-out) infinite;
+}
+@keyframes mn-ticket {
+  0%,
+  50% {
+    transform: translateX(24px);
+    opacity: 0;
+  }
+  60%,
+  92% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---- kanban: a card is dragged from review to submitted ---- */
+.kb-move {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: kb-move 6s var(--ease-water-sine) infinite;
+}
+@keyframes kb-move {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  5%,
+  16% {
+    transform: translate(0, 0) rotate(0) scale(1);
+    opacity: 1;
+  }
+  22% {
+    transform: translate(0, -4px) rotate(2deg) scale(1.03);
+  }
+  58% {
+    transform: translate(146px, -4px) rotate(2deg) scale(1.03);
+  }
+  66%,
+  90% {
+    transform: translate(146px, 0) rotate(0) scale(1);
+    opacity: 1;
+  }
+  96%,
+  100% {
+    transform: translate(146px, 0);
+    opacity: 0;
+  }
+}
+.kb-slot,
+.kb-edge {
+  opacity: 0;
+  animation: kb-slot 6s infinite;
+}
+@keyframes kb-slot {
+  0%,
+  18% {
+    opacity: 0;
+  }
+  24%,
+  58% {
+    opacity: 1;
+  }
+  66%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---- jobs: the search is typed, results come in, one is saved ---- */
+.jb-type {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: jb-type 6s infinite;
+}
+@keyframes jb-type {
+  0%,
+  8% {
+    transform: scaleX(0);
+    animation-timing-function: steps(15, end);
+  }
+  36%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+.jb-caret {
+  animation:
+    jb-caret 6s infinite,
+    m-blink 1.1s steps(1) infinite;
+}
+@keyframes jb-caret {
+  0%,
+  8% {
+    transform: translateX(-66px);
+    animation-timing-function: steps(15, end);
+  }
+  36%,
+  100% {
+    transform: translateX(0);
+  }
+}
+.jb-row {
+  animation: jb-row 6s var(--ease-water-out) infinite;
+}
+@keyframes jb-row {
+  0%,
+  38% {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  48%,
+  92% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.jb-save {
+  fill: var(--signal);
+  animation: jb-save 6s steps(1) infinite;
+}
+@keyframes jb-save {
+  0% {
+    fill: transparent;
+  }
+  66% {
+    fill: var(--signal);
+  }
+}

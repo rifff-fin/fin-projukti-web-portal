@@ -12,6 +12,7 @@ import { Hero } from './sections/Hero';
 import { TechMarquee } from './sections/TechMarquee';
 import { Process } from './sections/Process';
 import { Services } from './sections/Services';
+import { Nfc } from './sections/Nfc';
 import { Work } from './sections/Work';
 import { About } from './sections/About';
 import { Contact } from './sections/Contact';
@@ -47,6 +48,7 @@ export function App() {
           <TechMarquee />
           <Process />
           <Services />
+          <Nfc />
           <Work />
           <About />
           <Contact />

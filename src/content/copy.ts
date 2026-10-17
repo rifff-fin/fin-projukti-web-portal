@@ -41,6 +41,7 @@ export const nav = {
   links: [
     { label: 'Process', href: '#process' },
     { label: 'Services', href: '#services' },
+    { label: 'NFC Card', href: '#nfc' },
     { label: 'Work', href: '#work' },
     { label: 'About', href: '#about' },
   ],
@@ -110,6 +111,24 @@ export const process = {
   ],
 };
 
+/**
+ * The mockup illustrations (components/mockups): drawn UI in the site's palette that shows
+ * each service and project at a glance. Decorative; the copy beside them carries the meaning.
+ */
+export type MockupId =
+  | 'canvas'
+  | 'dashboard'
+  | 'storefront'
+  | 'workflow'
+  | 'cms'
+  | 'motion'
+  | 'nfc'
+  | 'quake'
+  | 'pos'
+  | 'menu'
+  | 'kanban'
+  | 'jobs';
+
 export const services = {
   index: '02',
   label: 'Services',
@@ -122,32 +141,158 @@ export const services = {
       summary: 'Interfaces that turn visitors into customers.',
       body: 'Crafting intuitive user experiences and pixel-perfect interfaces that convert visitors into loyal customers. Every pixel is intentional.',
       tags: ['Figma', 'Prototyping', 'User Research', 'Design Systems', 'Wireframing'],
+      visual: 'canvas',
     },
     {
       title: 'Web & App Development',
       summary: 'Full-stack products, from DMs to dashboards.',
       body: 'Full-stack MERN applications and mobile apps built for performance, scalability, and real business impact. From DMs to dashboards.',
       tags: ['MongoDB', 'Express', 'React', 'Node.js', 'Next.js', 'React Native'],
+      visual: 'dashboard',
+    },
+    {
+      title: 'E-commerce',
+      summary: 'Online stores that sell, ship and restock.',
+      // TODO(client): name the payment gateways you integrate (bKash, Nagad, SSLCommerz…)?
+      body: 'Custom storefronts with a fast checkout, local payment gateways, WhatsApp order updates and inventory that keeps itself in sync. Ready to sell on day one, built to grow with your catalogue.',
+      tags: ['Storefront', 'Checkout', 'Payments', 'WhatsApp API', 'Inventory', 'Admin Panel'],
+      visual: 'storefront',
     },
     {
       title: 'Automation (n8n)',
       summary: 'Workflows that do the repetitive work for you.',
       body: 'Custom automation workflows connecting your tools and eliminating repetitive tasks, so your team can focus on growth, not grunt work.',
       tags: ['n8n', 'WhatsApp API', 'Zapier', 'AI Agents', 'Python', 'Webhooks'],
+      visual: 'workflow',
     },
     {
       title: 'Webflow Development',
       summary: 'Responsive sites with a CMS your team can run.',
       body: 'Professional, responsive websites built in Webflow with pixel-perfect design, CMS integration, and powerful animations. No code compromises.',
       tags: ['Webflow', 'CMS', 'SEO', 'Responsive Design', 'Interactions'],
+      visual: 'cms',
     },
     {
       title: 'Framer Development',
       summary: 'Interactive sites with motion that stays with people.',
       body: 'Interactive websites built in Framer: advanced scroll animations, 3D effects, custom components, and micro-interactions that wow visitors.',
       tags: ['Framer', '3D Effects', 'Scroll Animation', 'Micro-interactions', 'Custom Components'],
+      visual: 'motion',
+    },
+  ] as { title: string; summary: string; body: string; tags: string[]; visual: MockupId }[],
+};
+
+/**
+ * 03 Fin NFC — our own product: the Fin NFC Card (from Fin NFC Tech, "powered by
+ * Fin Projukti"). The card and the profile preview update live as the visitor fills in the
+ * setup form; the order goes to the inbox like a brief, then on to WhatsApp.
+ */
+export const nfc = {
+  index: '03',
+  label: 'Fin NFC',
+  eyebrow: 'Fin NFC Tech · our smart business card',
+  title: 'Tap. Connect. *Grow.*',
+  intro:
+    'The Fin NFC Card is a smart business card from Fin NFC Tech, our own product line. Tap it on a phone and your profile opens: contact, socials, portfolio. No app to install, nothing to type.',
+  about:
+    'We design the card, program its chip and build the profile behind it. Works with modern iPhones and Android phones; the QR code on the front covers the rest.',
+  card: {
+    name: 'Your name here',
+    title: 'Job title (e.g. Founder & CEO)',
+    slogan: { before: 'Tap', accent: 'Connect', after: 'Grow' },
+    powered: { lead: 'Powered by', accent: 'Fin', brand: 'Projukti', tech: 'NFC Tech' },
+  },
+  stage: {
+    label: 'Live preview of your Fin NFC Card and the profile it opens',
+    flip: 'Flip the card',
+    tap: 'Tap it again',
+    idle: 'Hold your card near the phone',
+  },
+  profile: {
+    save: 'Save contact',
+    actions: { call: 'Call', whatsapp: 'WhatsApp', email: 'Email' },
+    links: ['Website', 'LinkedIn', 'Portfolio'],
+    powered: 'Powered by Fin NFC Tech',
+  },
+  stepsLabel: 'How it works',
+  steps: [
+    {
+      title: 'Tap',
+      body: 'Hold the card near a phone. The NFC chip opens your profile in the browser; the QR code does the same on phones without NFC.',
+    },
+    {
+      title: 'Connect',
+      body: 'Your profile: save your contact in one tap, call, WhatsApp or email you, open your socials and your work.',
+    },
+    {
+      // TODO(client): confirm that profile updates are included (and for how long).
+      title: 'Grow',
+      body: 'New number, new role, new website? Change the profile; the card in their pocket stays up to date.',
     },
   ],
+  includedLabel: 'What you get',
+  included: [
+    'The Fin NFC Card: matte black, NFC chip inside, QR code on the front',
+    'Your digital profile, set up by our team',
+    'One-tap “Save contact” for iPhone and Android',
+    'All your links: WhatsApp, socials, website, portfolio',
+    'Profile updates without reprinting the card',
+  ],
+  setup: {
+    title: 'Set up your card',
+    intro:
+      'Fill this in and watch your card and profile take shape. Send it and we’ll reply with the price and delivery time.',
+    name: { label: 'Name on the card', placeholder: 'Your name' },
+    role: { label: 'Job title', placeholder: 'Founder & CEO' },
+    company: { label: 'Company', placeholder: 'Optional' },
+    phone: { label: 'Phone / WhatsApp', placeholder: '+880 1…' },
+    email: { label: 'Email', placeholder: 'Optional' },
+    links: {
+      label: 'Links for your profile',
+      placeholder: 'Website, LinkedIn, Facebook, portfolio… one per line',
+    },
+    quantity: { label: 'How many cards?', options: ['1', '2–5', '6–20', '20+'] },
+    required: 'required',
+    errors: {
+      name: 'Please enter the name for the card.',
+      phone: 'Please enter a phone number we can reach you on.',
+      email: 'Please enter a valid email address, or leave it empty.',
+    },
+    submit: 'Order my card',
+    sending: 'Sending…',
+    // TODO(client): confirm the reply time for card orders (and whether delivery is Dhaka-only).
+    note: 'We reply within 24 hours with the price and delivery time.',
+    whatsapp: 'Prefer WhatsApp? Order there',
+    failed: 'Something went wrong. Please try again, or order on WhatsApp.',
+  },
+  success: {
+    title: 'Order received.',
+    body: 'Thank you. We’ll confirm the price and delivery within 24 hours. Want it sooner? Continue on WhatsApp.',
+    whatsapp: 'Continue on WhatsApp',
+    again: 'Set up another card',
+  },
+  /** The WhatsApp message for an order, prefilled from the setup form. */
+  whatsappMessage: (o: {
+    name: string;
+    role: string;
+    company: string;
+    phone: string;
+    email: string;
+    links: string;
+    quantity: string;
+  }) =>
+    [
+      'Hi Fin Projukti, I’d like to order the Fin NFC Card.',
+      o.name && `Name on the card: ${o.name}`,
+      o.role && `Job title: ${o.role}`,
+      o.company && `Company: ${o.company}`,
+      o.phone && `Phone: ${o.phone}`,
+      o.email && `Email: ${o.email}`,
+      o.quantity && `Cards: ${o.quantity}`,
+      o.links && `Links:\n${o.links}`,
+    ]
+      .filter(Boolean)
+      .join('\n'),
 };
 
 export type WorkGroup = 'web' | 'apps' | 'automation';
@@ -160,12 +305,14 @@ export interface Project {
   metric: string;
   tags: string[];
   groups: WorkGroup[];
+  /** The mockup on the card's cover. */
+  visual: MockupId;
   link?: string;
   githubLink?: string;
 }
 
 export const work = {
-  index: '03',
+  index: '04',
   label: 'Selected work',
   title: 'Work that *ships.*',
   intro: 'Websites, platforms and automations we have designed, engineered and launched.',
@@ -195,6 +342,7 @@ export const work = {
       metric: 'Digital identity built',
       tags: ['React', 'Vite', 'Framer Motion', 'Netlify'],
       groups: ['web'],
+      visual: 'motion',
       link: 'https://abdullahalrifatportfolio.netlify.app/',
     },
     {
@@ -206,6 +354,7 @@ export const work = {
       metric: 'Live studio presence',
       tags: ['React', 'Framer Motion', 'Web Design', 'Netlify'],
       groups: ['web'],
+      visual: 'cms',
       link: 'https://artographica-studios.netlify.app/',
     },
     {
@@ -217,6 +366,7 @@ export const work = {
       metric: '3× revenue growth',
       tags: ['MongoDB', 'Express', 'React', 'Node.js', 'OpenAI', 'WhatsApp API'],
       groups: ['apps', 'automation'],
+      visual: 'storefront',
     },
     {
       title: 'Digital Inventory System',
@@ -227,6 +377,7 @@ export const work = {
       metric: '80% less manual work',
       tags: ['Python', 'FastAPI', 'PostgreSQL', 'Automation', 'React'],
       groups: ['automation'],
+      visual: 'dashboard',
     },
     {
       title: 'NFC Digital Portfolio Card',
@@ -237,6 +388,7 @@ export const work = {
       metric: 'Instant digital presence',
       tags: ['NFC', 'React', 'Node.js', 'PWA'],
       groups: ['web'],
+      visual: 'nfc',
       link: 'https://msdiganto.netlify.app/',
     },
     {
@@ -248,6 +400,7 @@ export const work = {
       metric: 'Real-time safety data',
       tags: ['React', 'Real-time', 'REST API', 'Public Safety'],
       groups: ['web'],
+      visual: 'quake',
       link: 'https://bdquakealert.netlify.app/',
     },
     {
@@ -259,6 +412,7 @@ export const work = {
       metric: '60% faster checkout',
       tags: ['MongoDB', 'Express', 'React', 'Node.js', 'WhatsApp API'],
       groups: ['apps', 'automation'],
+      visual: 'pos',
     },
     {
       title: 'Restaurant QR Menu & Orders',
@@ -269,6 +423,7 @@ export const work = {
       metric: 'Zero paper menus',
       tags: ['React', 'Node.js', 'Socket.io', 'Payments'],
       groups: ['apps'],
+      visual: 'menu',
     },
     {
       title: 'ThesisFlow',
@@ -279,6 +434,7 @@ export const work = {
       metric: 'Academic workflow automated',
       tags: ['MongoDB', 'Express', 'React', 'Node.js'],
       groups: ['apps'],
+      visual: 'kanban',
       githubLink: 'https://github.com/rifff-fin/thesisflow-mern',
     },
     {
@@ -290,13 +446,14 @@ export const work = {
       metric: 'BD remote workforce enabled',
       tags: ['MongoDB', 'Express', 'React', 'Node.js'],
       groups: ['apps'],
+      visual: 'jobs',
       githubLink: 'https://github.com/rifff-fin/KAAJ_KAAM-A-Remote-job-portal-for-Bangladesh',
     },
   ] as Project[],
 };
 
 export const about = {
-  index: '04',
+  index: '05',
   label: 'About',
   title: 'From BRACU *to big tech.*',
   paragraphs: [
@@ -332,7 +489,7 @@ export const about = {
 };
 
 export const contact = {
-  index: '05',
+  index: '06',
   label: 'Contact',
   title: 'Let’s build something *remarkable.*',
   intro:
@@ -349,9 +506,11 @@ export const contact = {
         'UI/UX Design',
         'Web Development',
         'App Development',
+        'E-commerce',
         'Automation (n8n)',
         'Webflow',
         'Framer',
+        'Fin NFC Card',
         'Not sure yet',
       ],
     },
@@ -397,6 +556,7 @@ export const footer = {
   },
   companyLinks: [
     { label: 'Process', href: '#process' },
+    { label: 'Fin NFC Card', href: '#nfc' },
     { label: 'Work', href: '#work' },
     { label: 'About', href: '#about' },
     { label: 'Contact', href: '#contact' },

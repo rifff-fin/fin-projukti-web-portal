@@ -86,3 +86,10 @@ contrast). Square corners, 1 px hairlines.
   version. The headless QA browser defaults to full motion, so check both.
 - One section per file in `src/sections/`; 3D in `src/three/`; shared pieces in
   `src/components/` (`ui/` for primitives).
+- **Mockups** (`components/mockups/`): drawn SVG UI, not screenshots. Build new ones from
+  `kit.tsx` (tokens via `fill-*`/`stroke-*`, one orange accent); animate in
+  `styles/mockups.css` with CSS only. An element's own style must be the finished still
+  picture (reduced motion shows it). Re-export the PNGs in `docs/mockups/` if a scene changes.
+- **Fin NFC** (`sections/Nfc.tsx`): the card keeps its print design (round corners,
+  Quicksand + Orbitron), unlike the square site. Prices and delivery terms stay off the site
+  until the client confirms them.

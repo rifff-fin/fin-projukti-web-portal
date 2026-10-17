@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { contact, site } from '../content/copy';
+import { looksLikeBot, sendToInbox, whatsappLink } from '../lib/web3forms';
 import { ChapterHead } from '../components/ui/ChapterHead';
 import { Emph } from '../components/ui/Emph';
+import { Honeypot, TextField } from '../components/ui/form';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -12,12 +14,6 @@ import {
   WhatsApp,
   socialIcons,
 } from '../components/icons';
-
-// Web3Forms access keys are public by design (they only allow sending to the owner's inbox).
-const WEB3FORMS_KEY = '0ff5fa5d-94f1-4d99-92d6-115272782300';
-const ENDPOINT = 'https://api.web3forms.com/submit';
-/** A brief sent faster than this after the form appeared is a bot. */
-const MIN_FILL_MS = 2500;
 
 type Field = 'name' | 'email' | 'details';
 type Status = 'idle' | 'sending' | 'sent' | 'error';
@@ -74,27 +70,20 @@ export function Contact() {
       return;
     }
 
-    const data = new FormData(e.currentTarget);
-    const isBot =
-      String(data.get('botcheck') ?? '') !== '' || e.timeStamp - shownAt.current < MIN_FILL_MS;
+    const isBot = looksLikeBot(e.currentTarget, e.timeStamp, shownAt.current);
     const chosen = services.join(', ');
     setStatus('sending');
 
     if (!isBot) {
-      const body = new FormData();
-      body.append('access_key', WEB3FORMS_KEY);
-      body.append('subject', `New project brief from ${values.name.trim()}`);
-      body.append('from_name', 'Fin Projukti website');
-      body.append('name', values.name.trim());
-      body.append('email', values.email.trim());
-      body.append('company', values.company.trim() || 'Not provided');
-      body.append('services', chosen || 'Not specified');
-      body.append('budget', budget || 'Not specified');
-      body.append('message', values.details.trim());
       try {
-        const res = await fetch(ENDPOINT, { method: 'POST', body });
-        const json = (await res.json()) as { success?: boolean };
-        if (!json.success) throw new Error('rejected');
+        await sendToInbox(`New project brief from ${values.name.trim()}`, {
+          name: values.name.trim(),
+          email: values.email.trim(),
+          company: values.company.trim() || 'Not provided',
+          services: chosen || 'Not specified',
+          budget: budget || 'Not specified',
+          message: values.details.trim(),
+        });
       } catch {
         setStatus('error');
         return;
@@ -110,9 +99,10 @@ export function Contact() {
     requestAnimationFrame(() => successTitle.current?.focus());
   }
 
-  const whatsappHref = `https://wa.me/${site.whatsapp.number}?text=${encodeURIComponent(
+  const whatsappHref = whatsappLink(
+    site.whatsapp.number,
     contact.success.whatsappMessage(sentAs.name, sentAs.services),
-  )}`;
+  );
 
   return (
     <section id="contact" aria-labelledby="contact-title" className="py-[var(--section-y)]">
@@ -274,16 +264,7 @@ export function Contact() {
                     required
                   />
 
-                  {/* honeypot: people never see or fill it (Web3Forms also checks it) */}
-                  <input
-                    type="checkbox"
-                    name="botcheck"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    aria-hidden="true"
-                    className="absolute h-px w-px opacity-0"
-                    style={{ left: -9999 }}
-                  />
+                  <Honeypot />
 
                   <div className="flex flex-col gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
                     <p
@@ -347,55 +328,5 @@ function Line({
         <span className="flex items-center gap-4 py-4 text-bone">{inner}</span>
       )}
     </li>
-  );
-}
-
-interface TextFieldProps {
-  name: string;
-  label: string;
-  placeholder?: string;
-  value: string;
-  onChange: (e: { target: { value: string } }) => void;
-  onBlur?: () => void;
-  error?: string;
-  required?: boolean;
-  type?: string;
-  autoComplete?: string;
-  multiline?: boolean;
-}
-
-function TextField({ name, label, error, required, multiline, ...rest }: TextFieldProps) {
-  const id = `field-${name}`;
-  const errId = `${id}-error`;
-  const common = {
-    id,
-    name,
-    className: 'field',
-    'aria-invalid': error ? true : undefined,
-    'aria-describedby': error ? errId : undefined,
-    'aria-required': required || undefined,
-    value: rest.value,
-    onChange: rest.onChange,
-    onBlur: rest.onBlur,
-    placeholder: rest.placeholder,
-    autoComplete: rest.autoComplete,
-  };
-  return (
-    <div>
-      <label htmlFor={id} className="eyebrow mb-3 flex gap-2 text-ash">
-        {label}
-        {required && <span className="text-signal-hi">*</span>}
-      </label>
-      {multiline ? (
-        <textarea {...common} rows={5} className="field min-h-[9rem] resize-y" />
-      ) : (
-        <input {...common} type={rest.type ?? 'text'} />
-      )}
-      {error && (
-        <p id={errId} className="mt-2 text-[0.8125rem] text-error">
-          {error}
-        </p>
-      )}
-    </div>
   );
 }

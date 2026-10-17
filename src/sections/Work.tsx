@@ -4,10 +4,12 @@ import { ScrollTrigger } from '../lib/gsap';
 import { ChapterHead } from '../components/ui/ChapterHead';
 import { Emph } from '../components/ui/Emph';
 import { ArrowUpRight, GitHub } from '../components/icons';
+import { Mockup } from '../components/mockups/Mockup';
 
 /**
- * 04 Work — filterable project cards on a hairline grid. Six to start, "Show all" for the
- * rest. A card with a live site is one big link (the source link sits above it).
+ * 04 Work — filterable project cards on a hairline grid, each with a mockup cover. Six to
+ * start, "Show all" for the rest. A card with a live site is one big link (the source link
+ * sits above it).
  */
 export function Work() {
   const [filter, setFilter] = useState<WorkGroup | 'all'>('all');
@@ -100,11 +102,17 @@ export function Work() {
 function ProjectCard({ project: p }: { project: Project }) {
   return (
     <li className="group relative flex flex-col bg-void p-6 transition-colors duration-300 ease-liquid hover:bg-carbon md:p-8">
+      <div className="-mx-6 -mt-6 mb-6 overflow-hidden border-b border-line bg-carbon md:-mx-8 md:-mt-8 md:mb-8">
+        <Mockup
+          id={p.visual}
+          className="transition-transform duration-700 ease-liquid-expo group-hover:scale-[1.03]"
+        />
+      </div>
       <div className="eyebrow flex items-center justify-between gap-4">
         <span className="text-signal-hi">{p.category}</span>
         <span className="text-ash">{p.year}</span>
       </div>
-      <h3 className="mt-8 text-[length:var(--text-h3)] md:mt-12">
+      <h3 className="mt-6 text-[length:var(--text-h3)] md:mt-8">
         {p.link ? (
           <a
             href={p.link}

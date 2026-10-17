@@ -3,15 +3,22 @@ import { services } from '../content/copy';
 import { ChapterHead } from '../components/ui/ChapterHead';
 import { Emph } from '../components/ui/Emph';
 import { Plus } from '../components/icons';
+import { Mockup } from '../components/mockups/Mockup';
 
 /**
- * 03 Services — an index list. Each row is a disclosure: number, title and one line; open,
- * it shows the full description and the stack. Hovering a row draws the signal along its
- * top hairline. One row open at a time (the first, to start).
+ * 02 Services — an index list. Each row is a disclosure: number, title and one line; open,
+ * it shows the full description, the stack and a mockup of the kind of thing we build.
+ * Hovering a row draws the signal along its top hairline. One row open at a time (the
+ * first, to start); a mockup is drawn the first time its row opens, then kept.
  */
 export function Services() {
   const [open, setOpen] = useState(0);
+  const [seen, setSeen] = useState<number[]>([0]);
   const baseId = useId();
+  const toggle = (i: number) => {
+    setOpen(open === i ? -1 : i);
+    setSeen((s) => (s.includes(i) ? s : [...s, i]));
+  };
 
   return (
     <section id="services" aria-labelledby="services-title" className="py-[var(--section-y)]">
@@ -46,7 +53,7 @@ export function Services() {
                     type="button"
                     aria-expanded={isOpen}
                     aria-controls={panelId}
-                    onClick={() => setOpen(isOpen ? -1 : i)}
+                    onClick={() => toggle(i)}
                     className="grid w-full grid-cols-[2.75rem_1fr_auto] items-center gap-x-4 py-7 text-left md:grid-cols-[5rem_1.1fr_1fr_auto] md:py-9"
                   >
                     <span className="eyebrow self-center text-signal-hi">0{i + 1}</span>
@@ -77,15 +84,22 @@ export function Services() {
                   }`}
                 >
                   <div className="overflow-hidden" inert={!isOpen}>
-                    <div className="grid gap-6 pb-9 md:grid-cols-[5rem_1.1fr_1fr_auto] md:gap-x-4">
-                      <p className="max-w-[36rem] text-bone md:col-start-2">{s.body}</p>
-                      <ul className="flex flex-wrap content-start gap-2 md:col-start-3">
-                        {s.tags.map((t) => (
-                          <li key={t} className="tag">
-                            {t}
-                          </li>
-                        ))}
-                      </ul>
+                    <div className="grid gap-8 pb-10 md:grid-cols-[5rem_1.1fr_1fr_auto] md:gap-x-4">
+                      <div className="flex flex-col gap-6 md:col-start-2 md:pr-8">
+                        <p className="max-w-[36rem] text-bone">{s.body}</p>
+                        <ul className="flex flex-wrap content-start gap-2">
+                          {s.tags.map((t) => (
+                            <li key={t} className="tag">
+                              {t}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="md:col-span-2 md:col-start-3">
+                        {seen.includes(i) && (
+                          <Mockup id={s.visual} className="border border-line bg-carbon" />
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
