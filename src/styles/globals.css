@@ -1,0 +1,293 @@
+@import 'tailwindcss';
+@import './tokens.css';
+@import 'lenis/dist/lenis.css';
+
+/* Expose the tokens to Tailwind utilities (bg-void, text-chalk, border-line, font-mono…). */
+@theme inline {
+  --color-void: var(--void);
+  --color-carbon: var(--carbon);
+  --color-graphite: var(--graphite);
+  --color-line: var(--line);
+  --color-line-hi: var(--line-hi);
+  --color-ash: var(--ash);
+  --color-bone: var(--bone);
+  --color-chalk: var(--chalk);
+  --color-signal: var(--signal);
+  --color-signal-hi: var(--signal-hi);
+  --color-ok: var(--ok);
+  --color-error: var(--error);
+
+  --font-sans: var(--ff-sans);
+  --font-serif: var(--ff-serif);
+  --font-mono: var(--ff-mono);
+  --font-bengali: var(--ff-bengali);
+
+  --ease-liquid: var(--ease-water-out);
+  --ease-liquid-expo: var(--ease-water-expo);
+  --ease-liquid-sine: var(--ease-water-sine);
+}
+
+@layer base {
+  html {
+    background: var(--void);
+    color: var(--bone);
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* anchors land below the fixed header */
+    scroll-padding-top: var(--header-h);
+  }
+
+  /* The page colour lives on html: body stays clear so the fixed 3D canvas (z 0) and the
+     backdrop behind it show through wherever a section is transparent. */
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background: transparent;
+    font-family: var(--ff-sans);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    overflow-x: clip;
+  }
+
+  /* Two voices: light Geist for the line, Instrument Serif italic for its accent
+     (copy marks it *like this*; components/ui/Emph renders it as <em>). */
+  h1,
+  h2,
+  h3,
+  .headline {
+    font-family: var(--ff-sans);
+    font-weight: 300;
+    color: var(--chalk);
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  h3 {
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  h1 em,
+  h2 em,
+  h3 em,
+  .headline em,
+  .accent {
+    font-family: var(--ff-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--signal-hi);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--signal);
+    color: var(--void);
+  }
+
+  canvas {
+    display: block;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  /* Mono label: section numbers, eyebrows, tags. */
+  .eyebrow {
+    font-family: var(--ff-mono);
+    font-size: var(--text-mono);
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .shell {
+    width: 100%;
+    max-width: var(--max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Buttons: square corners, mono-free UI type. Primary is dark text on the signal orange
+     (7.5:1); white on orange would fail contrast. */
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    padding: 0 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 0;
+    font-family: var(--ff-sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    transition:
+      background-color var(--dur-ui) var(--ease-water-out),
+      border-color var(--dur-ui) var(--ease-water-out),
+      color var(--dur-ui) var(--ease-water-out);
+  }
+  .btn svg {
+    transition: transform var(--dur-ui) var(--ease-water-out);
+  }
+  .btn:hover svg {
+    transform: translateX(3px);
+  }
+  .btn-primary {
+    background: var(--signal);
+    color: var(--void);
+  }
+  .btn-primary:hover {
+    background: var(--signal-hi);
+  }
+  .btn-ghost {
+    border-color: var(--line-hi);
+    color: var(--chalk);
+  }
+  .btn-ghost:hover {
+    border-color: var(--chalk);
+  }
+  .btn-sm {
+    min-height: 2.5rem;
+    padding: 0 1rem;
+    font-size: 0.875rem;
+  }
+
+  /* Text link with an underline that draws in. */
+  .link-draw {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size 0.35s var(--ease-water-out);
+  }
+  .link-draw:hover,
+  .link-draw:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /* Form fields: hairline box on carbon. */
+  .field {
+    display: block;
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--line-hi);
+    border-radius: 0;
+    background: var(--carbon);
+    color: var(--chalk);
+    font: inherit;
+    transition: border-color var(--dur-ui) var(--ease-water-out);
+  }
+  .field::placeholder {
+    color: color-mix(in oklab, var(--ash) 80%, transparent);
+  }
+  .field:hover {
+    border-color: var(--ash);
+  }
+  .field:focus-visible {
+    outline: none;
+    border-color: var(--signal);
+  }
+  .field[aria-invalid='true'] {
+    border-color: var(--error);
+  }
+
+  /* Toggle chips (form choices, work filters). */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+    padding: 0 1rem;
+    border: 1px solid var(--line-hi);
+    background: transparent;
+    color: var(--bone);
+    font-size: 0.875rem;
+    transition:
+      border-color var(--dur-ui) var(--ease-water-out),
+      color var(--dur-ui) var(--ease-water-out),
+      background-color var(--dur-ui) var(--ease-water-out);
+  }
+  .chip:hover {
+    border-color: var(--ash);
+    color: var(--chalk);
+  }
+  .chip[aria-pressed='true'] {
+    border-color: var(--signal);
+    background: color-mix(in oklab, var(--signal) 12%, transparent);
+    color: var(--chalk);
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.75rem;
+    padding: 0 0.6rem;
+    border: 1px solid var(--line);
+    font-family: var(--ff-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+
+  /* Engineering backdrop: a faint dot grid that fades out towards the edges. */
+  .dot-grid {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      color-mix(in oklab, var(--chalk) 9%, transparent) 1px,
+      transparent 0
+    );
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 30%, transparent 85%);
+  }
+}
+
+/*
+ * Logo plates: the flat SVG logo stands in at each 3D station until the live logo is ready
+ * (html[data-webgl="ready"], set by three/Scene.tsx). Without WebGL it simply stays.
+ * Unlayered, so it beats the utilities on the plate.
+ */
+[data-logo-plate] > .plate-still {
+  transition: opacity 0.6s var(--ease-water-out);
+}
+html[data-webgl='ready'] [data-logo-plate] > .plate-still {
+  opacity: 0;
+}
+
+/* Reduced motion (the OS setting or the Motion switch, resolved by lib/motion.ts into
+   html[data-reduced]): CSS animations stop; colour transitions stay. */
+html[data-reduced] *,
+html[data-reduced] *::before,
+html[data-reduced] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+}
+
+/* The tech band's loop: the list is drawn twice, so half its width is one full lap. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}

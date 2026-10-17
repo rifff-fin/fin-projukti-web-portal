@@ -1,0 +1,55 @@
+/*
+ * Design tokens — "Signal Path" (master plan §4). The source of truth for colour, type,
+ * spacing and motion. globals.css maps them into Tailwind (bg-void, text-chalk, font-mono…).
+ * Raw font and ease tokens use --ff-* and --ease-water-free names so they never collide with
+ * Tailwind's own --font-* / --ease-* (that would make a cyclic var()).
+ */
+:root {
+  /* surfaces */
+  --void: #0a0a0b;
+  --carbon: #111113;
+  --graphite: #1a1a1e;
+  --line: #26262b;
+  --line-hi: #3a3a40;
+
+  /* text */
+  --ash: #8c8c93; /* muted, ≥ 4.5:1 on void and carbon */
+  --bone: #cfcfd2; /* body (the SRS grey) */
+  --chalk: #f4f4f2; /* headings */
+
+  /* the signal: logo orange (sampled from finlogo.png) — logo, node, buttons, active states */
+  --signal: #ff7a1b;
+  --signal-hi: #ff9a4d; /* small orange text and links on dark */
+  --ember: #fff3e6; /* the node's hot core (3D) */
+
+  --ok: #3fb97a;
+  --error: #f2555a;
+
+  /* type */
+  --ff-sans:
+    'Geist', 'Noto Sans Bengali', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ff-serif: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+  --ff-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ff-bengali: 'Noto Sans Bengali', var(--ff-sans);
+
+  --text-hero: clamp(2.6rem, 6.2vw, 6.25rem);
+  --text-display: clamp(3rem, 9vw, 8.5rem);
+  --text-h2: clamp(2.1rem, 4.6vw, 4rem);
+  --text-h3: clamp(1.25rem, 1.9vw, 1.65rem);
+  --text-lede: clamp(1.05rem, 1.35vw, 1.25rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-mono: 0.75rem;
+
+  /* layout */
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --max: 88rem;
+  --header-h: 4.25rem;
+  --section-y: clamp(6rem, 13vw, 11rem);
+
+  /* motion: long, liquid eases; no overshoot */
+  --ease-water-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-water-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-water-sine: cubic-bezier(0.37, 0, 0.63, 1);
+  --dur-ui: 240ms;
+}
