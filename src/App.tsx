@@ -1,13 +1,15 @@
 import { useEffect, useRef } from 'react';
-import { nav } from './content/copy';
+import { useLenis } from 'lenis/react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { MotionSwitch } from './components/MotionSwitch';
 import { SceneHost } from './components/SceneHost';
+import { SkipLink } from './components/SkipLink';
 import { useReveals } from './hooks/useReveals';
 import { ScrollTrigger } from './lib/gsap';
 import { SmoothScroll } from './lib/lenis';
-import { runPreloader } from './lib/preloader';
+import { runPreloader, whenRevealed } from './lib/preloader';
+import { useReducedMotion } from './hooks/useReducedMotion';
 import { Hero } from './sections/Hero';
 import { TechMarquee } from './sections/TechMarquee';
 import { Process } from './sections/Process';
@@ -33,12 +35,8 @@ export function App() {
 
   return (
     <SmoothScroll>
-      <a
-        href="#main"
-        className="eyebrow sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:bg-chalk focus:px-4 focus:py-3 focus:text-void"
-      >
-        {nav.skipLink}
-      </a>
+      <SkipLink />
+      <HashLanding />
       <Header />
       <SceneHost />
       {/* The page sits above the single fixed WebGL canvas (z 0); transparent sections show it. */}
@@ -58,4 +56,28 @@ export function App() {
       <MotionSwitch />
     </SmoothScroll>
   );
+}
+
+/**
+ * Arriving from another page at '/#work': the loader holds the page still, so go to the
+ * section once it lifts, after the pinned sections have been measured. Through Lenis when
+ * it runs (it would take a plain scroll back), natively otherwise.
+ */
+function HashLanding() {
+  const lenis = useLenis();
+  const reduced = useReducedMotion();
+  useEffect(() => {
+    if (!reduced && !lenis) return; // Lenis is still starting
+    whenRevealed(() => {
+      const hash = location.hash;
+      const target = hash.length > 1 ? document.querySelector<HTMLElement>(hash) : null;
+      if (!target) return;
+      ScrollTrigger.refresh();
+      requestAnimationFrame(() => {
+        if (lenis) lenis.scrollTo(target, { immediate: true, force: true });
+        else target.scrollIntoView();
+      });
+    });
+  }, [lenis, reduced]);
+  return null;
 }

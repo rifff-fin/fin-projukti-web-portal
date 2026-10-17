@@ -1,8 +1,8 @@
 # Fin Projukti website — current status
 
-**Updated:** 18 Oct 2026 · **Branch:** `main` = `redesign-3d` (merged and pushed; Netlify deploys `main`)
-**Stage:** **Launched** (Phase 7): Phases 0–6, the **Fin NFC Card** section and the **mockup illustrations** are live on finprojukti.tech.
-**Next: the after-launch checks below, and the NFC answers.**
+**Updated:** 18 Oct 2026 · **Branch:** `founder-page` (the new `/founder/` page; not on `main` yet). `main` = the live site.
+**Stage:** **Launched** (Phase 7): Phases 0–6, the **Fin NFC Card** section and the **mockup illustrations** are live on finprojukti.tech. New: the **founder page** (`/founder/`), waiting to be published.
+**Next: publish `/founder/` (your go-ahead), the after-launch checks below, and the NFC answers.**
 
 > Keep this file current: update it at the end of every piece of work (what changed, what's
 > next, what's blocked).
@@ -48,6 +48,34 @@
 10. **Footer**: "Got a project *in mind?*" with the 3D logo (desktop; the button sends a pulse
    up it), site map, socials.
 
+The header now has a sixth link, **Founder**; below 1024 px it is the menu button (six
+links no longer fit at tablet width). About ends with a **"Meet the founder"** strip.
+
+### The founder page (`/founder/`, new)
+
+A second page about **Abdullah Al Rifat, Founder & CEO**, built from his portfolio
+(abdullahalrifat.me, read 18 Oct 2026), in the same design, with the same header, footer and
+Motion switch, but no loader and no 3D canvas (the footer shows the flat logo).
+
+1. **Hero**: "Abdullah *Al Rifat.*", the lede, "Visit his portfolio" + "Start a project". His
+   portrait (the cut-out from his portfolio) stands on a hairline with the logo's path behind
+   him: the orange square left of his shoulder, steps behind him, a node on a ring by his
+   head. Motion: the portrait rises, the trace fills along the steps, the node lights, the ring
+   draws; then a pulse runs up the path every few seconds.
+2. **Quote**: "Fin — not because it’s over, but because every ending begins *a new chapter.*"
+3. **01 Story**: three paragraphs, "At a glance" (role, studies, based in, works across),
+   his numbers (3+ years, 25+ projects, 20+ technologies, from his portfolio).
+4. **02 Journey**: 2016 → Now on a rail drawn like the logo (square marker first, round last);
+   it fills with the signal as you scroll.
+5. **03 Expertise**: web, machine learning, embedded & robotics, and "Beyond code".
+6. **04 Recognition**: seven awards, 2016–2024.
+7. **05 Selected builds**: six of his projects, with GitHub links where public.
+8. **The way on**: his portfolio, LinkedIn, GitHub, email; then the site footer.
+
+Share image `public/og-founder.jpg` (rendered from the hero), `Person` JSON-LD, sitemap entry.
+Links to the home page’s sections work from there (`/#work`; on arrival the home page scrolls
+to the section once the loader lifts).
+
 ## Done
 
 | Phase | What |
@@ -61,6 +89,7 @@
 | 5 Contact | Done in Phase 1: validation on leaving a field and on submit (focus to the first error), honeypot + minimum fill time, Web3Forms, success panel with "Continue on WhatsApp" (prefilled). |
 | 6 SEO etc. | Open Graph/Twitter image rendered from the live hero (`public/og.jpg`), Organization JSON-LD, canonical, robots.txt, sitemap.xml, PNG icons from the logo geometry (`scripts/make-icons.py`), `netlify.toml`, README rewritten. |
 | Fin NFC | New section `03 Fin NFC` (`sections/Nfc.tsx`): the card in HTML/CSS 3D from `docs/reference/fin-nfc-card.png` (Quicksand + Orbitron, real QR from `scripts/make-qr.py`), the phone profile, GSAP flip/tap/tilt, the order form (shared Web3Forms code now in `lib/web3forms.ts`, form fields in `components/ui/form.tsx`). Nav link "NFC Card"; chapters renumbered to 06. |
+| Founder page | `/founder/` as a second Vite page (`founder/index.html`, `src/founder.tsx`, `src/FounderApp.tsx`, `src/sections/founder/*`), copy in `copy.ts` → `founder`, portrait `public/founder/abdullah-al-rifat.webp` (from his portfolio, trimmed), `lib/links.ts` for links across pages, header breakpoint md → lg, the Al Rifat Portfolio card now links to abdullahalrifat.me. |
 | Mockups | 12 drawn SVG scenes (`components/mockups/`): storefront (e-commerce template), dashboard, n8n workflow, design canvas, CMS site, motion site, NFC tap, quake map, POS, QR menu, kanban, job board. On every Services row and Work card; lazy chunk (11.5 KB gz); CSS animations that run only on screen. New service row "E-commerce". PNGs (1600 × 1000) in `docs/mockups/`, plus the NFC card front/back. |
 
 ## Next
@@ -73,7 +102,16 @@
 
 ## Waiting on you (master plan §1.5)
 
-**Fin NFC Card (new):**
+**Founder page (new):**
+- Read it through: the story is written from your portfolio, and one line is mine (“As
+  Founder & CEO, he leads the studio’s work across the web, automation and AI”), marked
+  `TODO(client)`. Third person (“he”) on purpose, as on a company site; say if you prefer “I”.
+- A sharper portrait: the one on your portfolio is 510 px wide, a little soft on big
+  screens. A larger cut-out (PNG with a transparent background) would replace it.
+- Your portfolio lists the phone as 0170104480 (10 digits); the site uses 01701-004480.
+- When you update abdullahalrifat.me, tell me what changed and I’ll bring this page in step.
+
+**Fin NFC Card:**
 - The price (one card, and team/bulk prices)? Until then the site says "we reply with the
   price and delivery time".
 - Delivery: Dhaka only, or all of Bangladesh? How long?
@@ -101,8 +139,9 @@
   desktop) to see the full version.
 - Dev server: http://localhost:5180 (5173 is the LANGLOK project).
 - Git needs `git -c safe.directory=D:/finprojukti …` on this machine.
-- Bundle: initial JS 147 KB gz (budget 160); the mockup scenes 11.5 KB gz and the 3D chunk
-  271 KB gz, both loaded lazily (the 3D at once under the loader). LCP measured locally on the production build: 2.7 s before the lede change
+- Bundle: home page initial JS ~152 KB gz (budget 160), the founder page ~143 KB gz; the
+  mockup scenes 11.5 KB gz and the 3D chunk 271 KB gz, both lazy (the 3D only on the home
+  page, at once under the loader). LCP measured locally on the production build: 2.7 s before the lede change
   (the loader holds the headline until the page is ready); re-measure on the live site.
 - The brief form has not been sent for real from here (it would reach the real inbox): send one
   test brief after launch.
@@ -139,3 +178,10 @@ python scripts/make-qr.py           # the NFC card's QR (pip install segno)
 - **18 Oct 2026**: Phase 7, launch: on the user's go-ahead, `main` fast-forwarded to
   `redesign-3d` and pushed; Netlify builds `main`. (The live site had not changed until now
   because only the `redesign-3d` branch had been pushed.)
+- **18 Oct 2026**: The founder page `/founder/` (Abdullah Al Rifat, from abdullahalrifat.me):
+  hero with his portrait on the logo’s path, quote, story, journey rail, expertise,
+  recognition, builds, links; “Meet the founder” in About; Founder in the header and footer.
+  Fixed: GSAP rounds CSS stroke-dashoffset to whole pixels (dash tweens now use `attr`); the
+  header wrapped at 768 px (menu below 1024 now); `/#work` from another page now lands on
+  Work. Checked at 1440 × 900 and 390 × 844, motion on and off, and the production build: no
+  console errors, no sideways scroll. On branch `founder-page`, not published.

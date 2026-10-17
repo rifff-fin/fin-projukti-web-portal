@@ -90,6 +90,12 @@ contrast). Square corners, 1 px hairlines.
   `kit.tsx` (tokens via `fill-*`/`stroke-*`, one orange accent); animate in
   `styles/mockups.css` with CSS only. An element's own style must be the finished still
   picture (reduced motion shows it). Re-export the PNGs in `docs/mockups/` if a scene changes.
+- **Two pages**: `/` (`index.html` → `main.tsx` → `App`) and `/founder/` (`founder/index.html`
+  → `founder.tsx` → `FounderApp`), both inputs in `vite.config.ts`. Shared links to home
+  sections go through `lib/links.ts` (`link('#work')` → `/#work` off the home page). The
+  founder page has no loader and no 3D canvas. Its facts come from abdullahalrifat.me.
+- **GSAP and SVG dashes**: tween `stroke-dashoffset` with `attr: { 'stroke-dashoffset': v }`;
+  as a CSS property GSAP rounds it to whole pixels (nothing moves on a `pathLength=1` path).
 - **Fin NFC** (`sections/Nfc.tsx`): the card keeps its print design (round corners,
   Quicksand + Orbitron), unlike the square site. Prices and delivery terms stay off the site
   until the client confirms them.

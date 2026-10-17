@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLenis } from 'lenis/react';
 import { nav, site } from '../content/copy';
+import { current, link, page } from '../lib/links';
 import { firePulse } from '../store/scene';
 import { LogoLockup } from './Logo';
 import { MotionSwitch } from './MotionSwitch';
@@ -55,9 +56,9 @@ export function Header() {
     };
   }, [open, lenis]);
 
-  // close the menu if the screen grows past the phone layout
+  // close the menu if the screen grows past the menu layout (phones and tablets)
   useEffect(() => {
-    const mql = window.matchMedia('(min-width: 768px)');
+    const mql = window.matchMedia('(min-width: 1024px)');
     const onChange = () => mql.matches && setOpen(false);
     mql.addEventListener('change', onChange);
     return () => mql.removeEventListener('change', onChange);
@@ -74,16 +75,21 @@ export function Header() {
       }`}
     >
       <div className="shell flex h-[var(--header-h)] items-center justify-between gap-6">
-        <a href="#top" aria-label={nav.home} onClick={() => setOpen(false)}>
+        <a
+          href={page === 'home' ? '#top' : '/'}
+          aria-label={nav.home}
+          onClick={() => setOpen(false)}
+        >
           <LogoLockup />
         </a>
 
-        <nav aria-label="Main" className="hidden items-center gap-9 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-7 lg:flex xl:gap-9">
           {nav.links.map((l) => (
             <a
               key={l.href}
-              href={l.href}
-              className="link-draw text-[0.9375rem] text-bone transition-colors hover:text-chalk"
+              href={link(l.href)}
+              aria-current={current(l.href)}
+              className="link-draw text-[0.9375rem] text-bone transition-colors hover:text-chalk aria-[current=page]:text-chalk aria-[current=page]:[background-size:100%_1px]"
             >
               {l.label}
             </a>
@@ -92,8 +98,8 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <a
-            href="#contact"
-            className="btn btn-primary btn-sm hidden md:inline-flex"
+            href={link('#contact')}
+            className="btn btn-primary btn-sm hidden lg:inline-flex"
             onPointerEnter={firePulse}
             onFocus={firePulse}
           >
@@ -102,7 +108,7 @@ export function Header() {
           <button
             ref={menuButton}
             type="button"
-            className="-mr-2 inline-flex h-11 w-11 items-center justify-center text-chalk md:hidden"
+            className="-mr-2 inline-flex h-11 w-11 items-center justify-center text-chalk lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? nav.close : nav.open}
@@ -117,13 +123,14 @@ export function Header() {
         <div
           ref={panel}
           id="mobile-menu"
-          className="fixed inset-x-0 top-[var(--header-h)] bottom-0 flex flex-col overflow-y-auto border-t border-line bg-void px-[var(--gutter)] pt-8 pb-10 md:hidden"
+          className="fixed inset-x-0 top-[var(--header-h)] bottom-0 flex flex-col overflow-y-auto border-t border-line bg-void px-[var(--gutter)] pt-8 pb-10 lg:hidden"
         >
           <nav aria-label="Main" className="flex flex-col">
             {nav.links.map((l, i) => (
               <a
                 key={l.href}
-                href={l.href}
+                href={link(l.href)}
+                aria-current={current(l.href)}
                 onClick={() => setOpen(false)}
                 className="flex items-baseline gap-4 border-b border-line py-5 text-[2rem] font-light tracking-[-0.03em] text-chalk"
               >
@@ -133,7 +140,7 @@ export function Header() {
             ))}
           </nav>
           <a
-            href="#contact"
+            href={link('#contact')}
             onClick={() => setOpen(false)}
             className="btn btn-primary mt-8 self-start"
           >

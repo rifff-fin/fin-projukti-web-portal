@@ -40,6 +40,7 @@ src/
   brand/logoSpec.ts      the logo's measured geometry (SVG mark, favicon, loader and 3D use it)
   brand/qr.ts            the QR code on the Fin NFC card preview (made by scripts/make-qr.py)
   sections/              one file per page section (Nfc.tsx = the Fin NFC Card)
+  sections/founder/      the founder page, /founder/ (entry: founder/index.html → src/founder.tsx)
   components/            header, footer, logo, logo plates (3D stations), Motion switch
   components/nfc/        the NFC card (front/back) and the phone profile it opens
   components/mockups/    the drawn UI mockups on Services and Work (one SVG scene each)

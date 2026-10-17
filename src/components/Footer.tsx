@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { footer, services, site } from '../content/copy';
+import { link } from '../lib/links';
 import { firePulse } from '../store/scene';
 import { Emph } from './ui/Emph';
 import { LogoLockup } from './Logo';
@@ -20,7 +21,7 @@ export function Footer() {
             <Emph text={footer.cta} />
           </h2>
           <a
-            href="#contact"
+            href={link('#contact')}
             className="btn btn-primary mt-12"
             onPointerEnter={firePulse}
             onFocus={firePulse}
@@ -48,7 +49,7 @@ export function Footer() {
         <FooterColumn title={footer.columns.services} className="lg:col-span-3 lg:col-start-6">
           {services.items.map((s) => (
             <li key={s.title}>
-              <a href="#services" className="link-draw text-ash hover:text-chalk">
+              <a href={link('#services')} className="link-draw text-ash hover:text-chalk">
                 {s.title}
               </a>
             </li>
@@ -57,7 +58,7 @@ export function Footer() {
         <FooterColumn title={footer.columns.company} className="lg:col-span-2">
           {footer.companyLinks.map((l) => (
             <li key={l.href}>
-              <a href={l.href} className="link-draw text-ash hover:text-chalk">
+              <a href={link(l.href)} className="link-draw text-ash hover:text-chalk">
                 {l.label}
               </a>
             </li>
