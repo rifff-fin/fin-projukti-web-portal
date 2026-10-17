@@ -1,8 +1,8 @@
 # Fin Projukti website — current status
 
-**Updated:** 18 Oct 2026 · **Branch:** `redesign-3d` (not merged or pushed; `main` = the live site)
-**Stage:** Phases 0–6 done, plus the **Fin NFC Card** section and the **mockup illustrations**.
-**Next: your review (and the NFC answers below), then Phase 7 (launch).**
+**Updated:** 18 Oct 2026 · **Branch:** `main` = `redesign-3d` (merged and pushed; Netlify deploys `main`)
+**Stage:** **Launched** (Phase 7): Phases 0–6, the **Fin NFC Card** section and the **mockup illustrations** are live on finprojukti.tech.
+**Next: the after-launch checks below, and the NFC answers.**
 
 > Keep this file current: update it at the end of every piece of work (what changed, what's
 > next, what's blocked).
@@ -65,11 +65,8 @@
 
 ## Next
 
-1. **Your review** of the branch (`npm run dev`, then http://localhost:5180; turn the Motion
-   switch on to see the full version on this PC).
-2. **Phase 7, launch**: merge `redesign-3d` into `main` and push; Netlify deploys it. Needs
-   your go-ahead.
-3. After launch: a Lighthouse run on the live URL; a test brief through the live form.
+1. A Lighthouse run on the live URL; a test brief through the live form.
+2. Answers to the open questions below (until then those texts stay as they are, live).
 4. Optional: a still render of the 3D logo for the no-WebGL fallback (today it is the flat SVG).
 5. After launch: send one test card order through the live NFC form (it reaches the real
    inbox, so it was not sent from here).
@@ -139,3 +136,6 @@ python scripts/make-qr.py           # the NFC card's QR (pip install segno)
   Services and Work (new "E-commerce" service), with PNG exports in `docs/mockups/`. Checked at
   1440 × 900 and 390 × 844 with motion on and off: no console errors, no sideways scroll;
   form validation and the WhatsApp link checked; production build checked.
+- **18 Oct 2026**: Phase 7, launch: on the user's go-ahead, `main` fast-forwarded to
+  `redesign-3d` and pushed; Netlify builds `main`. (The live site had not changed until now
+  because only the `redesign-3d` branch had been pushed.)
