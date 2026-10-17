@@ -93,7 +93,8 @@ contrast). Square corners, 1 px hairlines.
 - **Two pages**: `/` (`index.html` → `main.tsx` → `App`) and `/founder/` (`founder/index.html`
   → `founder.tsx` → `FounderApp`), both inputs in `vite.config.ts`. Shared links to home
   sections go through `lib/links.ts` (`link('#work')` → `/#work` off the home page). The
-  founder page has no loader and no 3D canvas. Its facts come from abdullahalrifat.me.
+  founder page has no loader and no 3D canvas. It stays one short, professional screen about
+  his role (his wish): facts only from abdullahalrifat.me, which it links to for the rest.
 - **GSAP and SVG dashes**: tween `stroke-dashoffset` with `attr: { 'stroke-dashoffset': v }`;
   as a CSS property GSAP rounds it to whole pixels (nothing moves on a `pathLength=1` path).
 - **Fin NFC** (`sections/Nfc.tsx`): the card keeps its print design (round corners,

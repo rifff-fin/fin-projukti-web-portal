@@ -333,12 +333,12 @@ One page (`/`), anchors for navigation. Order:
 Header: mark + "Fin Projukti", links (Process, Services, NFC Card, Work, About, Founder), "Start a project"
 (the menu button below 1024 px).
 
-**Second page, `/founder/` (added Oct 2026):** the founder and CEO, Abdullah Al Rifat, from his
-portfolio (abdullahalrifat.me). Hero with his portrait standing on the logo’s path (square
-foot → steps behind him → node on a ring), his “Fin” quote, then 01 Story, 02 Journey (a rail
-drawn like the logo, filling on scroll), 03 Expertise, 04 Recognition, 05 Selected builds,
-and links to his portfolio. Same header/footer; no loader, no WebGL. Vite multi-page
-(`founder/index.html`); links to home sections go through `lib/links.ts`.
+**Second page, `/founder/` (added Oct 2026):** the founder and CEO, Abdullah Al Rifat: one
+screen about his role at Fin Projukti (name, title, two lines of bio, his “Fin” line, his
+portrait), sending people to his own site, abdullahalrifat.me, for everything else. His
+wish: professional, short, nothing he has not published. Same header/footer; no loader, no
+WebGL. Vite multi-page (`founder/index.html`); links to home sections go through
+`lib/links.ts`.
 Transparent over the hero; after 40 px of scroll it gets a solid `--void` background with a
 blur and a bottom hairline. Mobile: a full-screen menu with large links. Bottom-left: the
 Motion switch.
@@ -422,8 +422,8 @@ src/
   components/Header.tsx  Footer.tsx  Logo.tsx  LogoPlate.tsx  MotionSwitch.tsx
              SceneHost.tsx  icons.tsx  ui/(Button, ChapterHead, Container, Emph, Eyebrow)
   sections/Hero.tsx  TechMarquee.tsx  Process.tsx  Services.tsx  Nfc.tsx  Work.tsx  About.tsx  Contact.tsx
-  sections/founder/(FounderHero, FounderQuote, Story, Journey, Expertise, Recognition, Builds, FounderCta)
-  founder.tsx  FounderApp.tsx  (+ founder/index.html at the root)  lib/links.ts  styles/founder.css
+  sections/founder/FounderHero.tsx  founder.tsx  FounderApp.tsx  (+ founder/index.html at the root)
+  lib/links.ts
   components/nfc/(NfcCard, ProfilePhone)  components/mockups/(Mockup, kit, scenes, scenes-work)
   brand/qr.ts  lib/web3forms.ts  styles/nfc.css  mockups.css
   three/Scene.tsx  Lighting.tsx  LogoModel.tsx  logoGeometry.ts  logoMaterial.ts

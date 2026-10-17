@@ -482,11 +482,11 @@ export const about = {
     },
   ],
   founder: {
+    label: 'Founded and led by',
     name: 'Abdullah Al Rifat',
     role: 'Founder & CEO',
-    line: 'Full-stack developer, AI researcher and robotics engineer, studying Computer Science and Engineering at BRAC University.',
-    link: 'Meet the founder',
-    href: '/founder/',
+    page: { label: 'Meet the founder', href: '/founder/' },
+    site: { label: 'abdullahalrifat.me', href: 'https://abdullahalrifat.me/' },
   },
   // TODO(client): the previous site's numbers; confirm before launch.
   stats: [
@@ -587,213 +587,23 @@ export const preloader = {
 };
 
 /**
- * /founder/ — the founder and CEO. Every fact comes from his portfolio, abdullahalrifat.me
- * (read 18 Oct 2026); he is updating it, so keep this page in step with it.
+ * /founder/ — the founder and CEO, kept to his role at Fin Projukti. Everything else about
+ * him lives on his own site, abdullahalrifat.me, which the page sends people to. Facts only:
+ * add nothing here he has not published himself.
  */
 export const founder = {
   name: 'Abdullah Al Rifat',
   eyebrow: 'Founder & CEO · Fin Projukti',
   title: 'Abdullah\n*Al Rifat.*',
-  lede: 'Full-stack developer, AI researcher and robotics engineer, and the founder of Fin Projukti. He studies Computer Science and Engineering at BRAC University and has been building with code since 2016.',
-  portfolio: { label: 'Visit his portfolio', href: 'https://abdullahalrifat.me/' },
-  secondary: 'Start a project',
-  meta: ['BRAC University · CSE', 'Dhaka, Bangladesh', 'Coding since 2016'],
+  lede: 'Founder and CEO of Fin Projukti. A full-stack developer and AI researcher, studying Computer Science and Engineering at BRAC University.',
+  quote: 'Fin — not because it’s over, but because every ending begins *a new chapter.*',
+  portfolio: { label: 'Visit abdullahalrifat.me', href: 'https://abdullahalrifat.me/' },
+  linkedin: { label: 'LinkedIn', href: 'https://www.linkedin.com/in/abdullah-al-rifat-fin/' },
   photo: {
     src: '/founder/abdullah-al-rifat.webp',
     width: 432,
     height: 437,
-    alt: 'Abdullah Al Rifat in a black suit and glasses',
+    alt: 'Abdullah Al Rifat',
     caption: 'Founder & CEO',
-  },
-  quote: {
-    text: 'Fin — not because it’s over, but because every ending begins *a new chapter.*',
-    by: 'Abdullah Al Rifat',
-  },
-  story: {
-    index: '01',
-    label: 'Story',
-    title: 'From science fairs *to a studio.*',
-    paragraphs: [
-      'Abdullah started coding in 2016 and grew up on competitions: science fairs, physics olympiads, robotics. A self-driving RC car won the Autodrive Prize; a project at BRAC University won its Best CSE Project Award.',
-      'Freelance web development followed in 2023, with more than twenty websites delivered for clients. Fin Projukti is the next step: a student-led studio from BRAC University that takes businesses from manual work to automation and AI.',
-      // TODO(client): his own words for what he does as Founder & CEO.
-      'As Founder & CEO, he leads the studio’s work across the web, automation and AI.',
-    ],
-    factsLabel: 'At a glance',
-    facts: [
-      { label: 'Role', value: 'Founder & CEO, Fin Projukti' },
-      {
-        label: 'Studies',
-        value: 'B.Sc. in Computer Science and Engineering, BRAC University (since 2022)',
-      },
-      { label: 'Based in', value: 'Dhaka, Bangladesh' },
-      { label: 'Works across', value: 'Web · Automation · AI · Robotics' },
-    ],
-    // from his portfolio (abdullahalrifat.me)
-    stats: [
-      { value: '3+', label: 'Years of experience' },
-      { value: '25+', label: 'Projects completed' },
-      { value: '20+', label: 'Technologies' },
-    ],
-  },
-  journey: {
-    index: '02',
-    label: 'Journey',
-    title: 'Step by step, *to the circle.*',
-    intro:
-      'The path in our logo, lived: from the first square of code, one step at a time, to the studio.',
-    steps: [
-      {
-        year: '2016',
-        kind: 'Milestone',
-        title: 'Started coding',
-        body: 'Learned the fundamentals of programming and competed in local coding events. 1st place at the 37th National Science Fair.',
-      },
-      {
-        year: '2019',
-        kind: 'Achievement',
-        title: 'Science & physics',
-        body: '1st place in the Regional Science Olympiad, an Excellence Award at the Inter-school Physics Fair, and Physics Olympiad honours.',
-      },
-      {
-        year: '2021',
-        kind: 'Education',
-        title: 'Higher Secondary Certificate',
-        body: 'Lions School & College, science stream: A+ (93%), with a focus on physics and mathematics.',
-      },
-      {
-        year: '2022',
-        kind: 'Education',
-        title: 'BRAC University',
-        body: 'Began a B.Sc. in Computer Science and Engineering and started exploring web development, AI and robotics.',
-      },
-      {
-        year: '2023',
-        kind: 'Work',
-        title: 'Freelance web development',
-        body: 'Delivered 20+ websites for clients: React applications, automation tools, responsive design. Won the Autodrive Prize with a self-driving RC car.',
-      },
-      {
-        year: '2024',
-        kind: 'Achievement',
-        title: 'University excellence',
-        body: 'The Best CSE Project Award at BRAC University and a Top 10 finish in the university hackathon.',
-      },
-      {
-        year: 'Now',
-        kind: 'Founder',
-        title: 'Fin Projukti',
-        body: 'Founder & CEO of a BRAC University student-led studio for web, apps, automation and AI. Still learning, still building.',
-      },
-    ],
-  },
-  expertise: {
-    index: '03',
-    label: 'Expertise',
-    title: 'Code, models *and machines.*',
-    areas: [
-      {
-        title: 'Web development',
-        body: 'Clean, fast web apps with modern tools, from the database to the interface.',
-        tags: ['MERN Stack', 'React', 'Express', 'MongoDB', 'MySQL', 'Python'],
-      },
-      {
-        title: 'Machine learning',
-        body: 'Neural networks, reinforcement learning and computer vision.',
-        tags: ['PyTorch', 'TensorFlow', 'OpenCV', 'NumPy', 'Pandas', 'Scikit-learn'],
-      },
-      {
-        title: 'Embedded systems & robotics',
-        body: 'Microcontroller programming, IoT devices and sensor integration.',
-        tags: ['Arduino', 'ESP32', 'C / C++', 'Sensors'],
-      },
-    ],
-    beyondLabel: 'Beyond code',
-    beyond: [
-      'Public speaking',
-      'Team leadership',
-      'Event management',
-      'Public relations',
-      'Video editing',
-      'Photo editing & graphic design',
-      'Guitar',
-    ],
-  },
-  recognition: {
-    index: '04',
-    label: 'Recognition',
-    title: 'Won *along the way.*',
-    items: [
-      { year: '2024', title: 'Best CSE Project Award', by: 'BRAC University' },
-      { year: '2024', title: 'Top 10 finalist', by: 'University hackathon' },
-      { year: '2023', title: 'Autodrive Prize', by: 'Self-driving RC car' },
-      {
-        year: '2019',
-        title: '1st place, Regional Science Olympiad',
-        by: 'With Physics Olympiad honours',
-      },
-      { year: '2018', title: '1st place, National Children’s Award', by: 'As a guitarist' },
-      { year: '2017', title: '1st place, Creative Talent Hunt', by: 'Also in 2016' },
-      { year: '2016', title: '1st place, 37th National Science Fair', by: 'Science project' },
-    ],
-  },
-  builds: {
-    index: '05',
-    label: 'Selected builds',
-    title: 'Things he *has built.*',
-    intro: 'A few of his own projects. The full list, with certificates, is on his portfolio.',
-    code: 'Code',
-    items: [
-      {
-        title: 'BDquake Alert',
-        kind: 'Web',
-        body: 'Real-time earthquake monitoring and instant email alerts for Bangladesh, powered by the USGS API.',
-        tags: ['JavaScript', 'Node.js', 'USGS API'],
-        href: 'https://github.com/rifff-fin/BDquake-alert',
-      },
-      {
-        title: 'Self-driving RC car',
-        kind: 'Robotics',
-        body: 'An Arduino-based autonomous car with corner detection and RC control. Won the Autodrive Prize.',
-        tags: ['Arduino', 'C++', 'IR sensors'],
-      },
-      {
-        title: 'Research Mate Finder',
-        kind: 'Web',
-        body: 'A web app for CSE 370 that helps students find research topics, work with researchers and organise ideas.',
-        tags: ['PHP', 'MySQL', 'JavaScript'],
-        href: 'https://github.com/rifff-fin/Top-Research-Mate-Finder-WebApp',
-      },
-      {
-        title: 'Underwater Treasure Game',
-        kind: '3D graphics',
-        body: 'A 3D computer-graphics game of underwater exploration and treasure hunting.',
-        tags: ['Python', 'OpenGL', '3D graphics'],
-        href: 'https://github.com/rifff-fin/Underwater-Treasure-Game-3D-Computer-Graphics',
-      },
-      {
-        title: 'Adult Income Prediction',
-        kind: 'Machine learning',
-        body: 'A CSE 442 project that predicts adult income with classification algorithms.',
-        tags: ['Python', 'Scikit-learn', 'Pandas'],
-        href: 'https://github.com/rifff-fin/Adult-Income-Prediction-Project-CSE442',
-      },
-      {
-        title: 'Soccer robot',
-        kind: 'Robotics',
-        body: 'An Arduino-controlled soccer bot with ball tracking and a kicking mechanism.',
-        tags: ['Arduino', 'C++', 'Sensors'],
-      },
-    ] as { title: string; kind: string; body: string; tags: string[]; href?: string }[],
-  },
-  cta: {
-    title: 'The full story lives *on his portfolio.*',
-    body: 'Projects, certificates and the latest work: abdullahalrifat.me is his own site, updated as he builds.',
-    button: 'Visit abdullahalrifat.me',
-    links: [
-      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/abdullah-al-rifat-fin/' },
-      { label: 'GitHub', href: 'https://github.com/rifff-fin' },
-      { label: 'aal.rifat.002@gmail.com', href: 'mailto:aal.rifat.002@gmail.com' },
-    ],
   },
 };
